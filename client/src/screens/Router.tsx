@@ -12,12 +12,12 @@ export const Router: React.FC = () => {
       <Switch>
         <PrivateRoute
           exact
-          path="/docs"
+          path="/templates"
           component={withTracker(TemplatesListScreen)}
         />
 
         <Route path={"*"}>
-          <Redirect to={"/docs"} />
+          <Redirect to={"/contracts"} />
         </Route>
       </Switch>
     </>

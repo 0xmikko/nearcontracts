@@ -32,6 +32,7 @@ import {
 import './App.css';
 import {Router} from './screens/Router';
 import {JoinScreen} from "./screens/JoinScreen/JoinScreen";
+import {BACKEND_ADDR} from "./config";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -42,8 +43,6 @@ const App = () => {
   const appStatus = useSelector((state: RootState) => state.profile.status);
   // const role = useSelector((state: RootState) => state.auth.access?.role);
   const role = useSelector((state: RootState) => state.profile.role);
-
-
 
   switch (appStatus) {
     case APP_STATUS_AUTH_REQUIRED:

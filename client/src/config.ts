@@ -6,6 +6,8 @@
  *
  */
 
+
+
 export const BACKEND_ADDR =
   process.env.NODE_ENV === 'development'
     ? 'localhost:4000'
@@ -13,6 +15,6 @@ export const BACKEND_ADDR =
 
 export const SSO_ADDR =
   process.env.NODE_ENV === 'development'
-    ? 'https://crm.nearcontracts.com'
-    : window.location.protocol + '//crm.' + window.location.host;
+    ? 'https://crm-nanocontracts.herokuapp.com'
+    : 'https://crm-nanocontracts.herokuapp.com'
 
