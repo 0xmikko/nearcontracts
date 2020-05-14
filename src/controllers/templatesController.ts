@@ -14,8 +14,13 @@ export class TemplatesController {
 
   create() {
     return (req: RequestWithUser, res: Response) => {
+
+      if (req.user === undefined || req.user.user_id === undefined) {
+        return res.status(400).send("No user id");
+      }
+
       this._service
-        .create(req.user || '', req.body.content, req.body.isPublic)
+        .create(req.user.user_id, req.body.content, req.body.isPublic)
         .then((result) => res.json(result))
         .catch(() => res.status(400).send());
     };
@@ -24,8 +29,12 @@ export class TemplatesController {
   list() {
     return (req: RequestWithUser, res: Response) => {
 
+      if (req.user === undefined || req.user.user_id === undefined) {
+        return res.status(400).send("No user id");
+      }
+
       this._service
-          .list(req.user || '')
+          .list(req.user.user_id)
           .then((result) => res.json(result))
           .catch((e) => res.status(400).send(e));
     };
@@ -34,8 +43,12 @@ export class TemplatesController {
   getOne() {
     return (req: RequestWithUser, res: Response) => {
 
+      if (req.user === undefined || req.user.user_id === undefined) {
+        return res.status(400).send("No user id");
+      }
+
       this._service
-          .list(req.user || '')
+          .list(req.user.user_id)
           .then((result) => res.json(result))
           .catch(() => res.status(400).send());
     };
