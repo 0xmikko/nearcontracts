@@ -22,7 +22,6 @@
       "moment": "^2.25.3",
       "morgan": "^1.10.0",
       "nodemon": "^2.0.3",
-      "passport": "^0.4.1",
       "pg": "^7.3.0",
       "prettier": "^2.0.5",
       "reflect-metadata": "^0.1.13",
