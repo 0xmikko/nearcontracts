@@ -16,13 +16,13 @@ export class TemplatesService implements TemplatesServiceI {
     this._repository = repository;
   }
 
-  create(userId: string, content: string): Promise<Template> {
+  create(userId: string, content: string, isPublic: boolean): Promise<Template> {
   return new Promise<Template>(async (resolve, reject) => {
     try {
-      const newDoc: Template = {
-        content,
-        owner: userId
-      }
+      const newDoc = new Template();
+      newDoc.content = content;
+      newDoc.owner = userId;
+      newDoc.isPublic = isPublic;
       this._repository.upsert(newDoc);
     } catch (e) {
       reject(e);

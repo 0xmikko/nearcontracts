@@ -1,6 +1,0 @@
-{
-  "database_url": "postgres://vhkvhxbceamncf:70857b0612570c1dbef1710670b2535f50640b7831e3a723b4ed0e5fce38517e@ec2-54-80-184-43.compute-1.amazonaws.com/d44ohra9lg0ttq",
-  "port": 4000,
-  "jwt_secret": "12av67bdh"
-}
-

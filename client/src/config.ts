@@ -10,8 +10,8 @@
 
 export const BACKEND_ADDR =
   process.env.NODE_ENV === 'development'
-    ? 'localhost:4000'
-    : 'https://nearcontracts.herokuapp.com'
+    ? 'http://localhost:4000'
+    : 'http://localhost:4000'
 
 export const SSO_ADDR =
   process.env.NODE_ENV === 'development'

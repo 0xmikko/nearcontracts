@@ -8,8 +8,10 @@
 
 import * as auth from './auth/actions';
 import * as profile from './profile/actions';
+import * as templates from './templates/actions';
 
 export default {
   auth,
   profile,
+  templates,
 };

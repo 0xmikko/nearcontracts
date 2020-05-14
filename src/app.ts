@@ -34,7 +34,7 @@ export function createApp(config: ConfigParams): Promise<Application> {
     app.use(
       cors({
         credentials: true,
-        origin: "http://localhost:4000",
+        origin: "http://localhost:3000",
       })
     );
 
@@ -54,7 +54,7 @@ export function createApp(config: ConfigParams): Promise<Application> {
     });
 
     // Documents Controller
-    app.get("/templates/", loginRequired, templatesController.create());
+    app.get("/api/templates/", loginRequired, templatesController.list());
 
     // ERROR HANDLER
     app.use(errorHandler);

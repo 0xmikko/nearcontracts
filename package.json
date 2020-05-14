@@ -30,6 +30,8 @@
       "typescript": "^3.9.2"
    },
    "scripts": {
-      "start": "nodemon ./node_modules/.bin/ts-node src/index.ts"
+      "dev": "nodemon",
+      "typeorm-gen": "ts-node ./node_modules/.bin/typeorm migration:generate -d ./src/migrations/ ",
+      "typeorm-migrate": "ts-node ./node_modules/.bin/typeorm migration:run"
    }
 }

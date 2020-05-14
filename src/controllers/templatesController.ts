@@ -15,7 +15,7 @@ export class TemplatesController {
   create() {
     return (req: RequestWithUser, res: Response) => {
       this._service
-        .create(req.body.login, req.body.password)
+        .create(req.user || '', req.body.content, req.body.isPublic)
         .then((result) => res.json(result))
         .catch(() => res.status(400).send());
     };
@@ -25,9 +25,9 @@ export class TemplatesController {
     return (req: RequestWithUser, res: Response) => {
 
       this._service
-          .list(req.user?.id)
+          .list(req.user || '')
           .then((result) => res.json(result))
-          .catch(() => res.status(400).send());
+          .catch((e) => res.status(400).send(e));
     };
   }
 
@@ -35,7 +35,7 @@ export class TemplatesController {
     return (req: RequestWithUser, res: Response) => {
 
       this._service
-          .list(req.user?.id)
+          .list(req.user || '')
           .then((result) => res.json(result))
           .catch(() => res.status(400).send());
     };
