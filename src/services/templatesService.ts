@@ -21,7 +21,7 @@ export class TemplatesService implements TemplatesServiceI {
     try {
       const newDoc: Template = {
         content,
-        userID: userId
+        owner: userId
       }
       this._repository.upsert(newDoc);
     } catch (e) {

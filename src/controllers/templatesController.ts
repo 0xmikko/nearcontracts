@@ -30,4 +30,15 @@ export class TemplatesController {
           .catch(() => res.status(400).send());
     };
   }
+
+  getOne() {
+    return (req: RequestWithUser, res: Response) => {
+
+      this._service
+          .list(req.user?.id)
+          .then((result) => res.json(result))
+          .catch(() => res.status(400).send());
+    };
+  }
 }
+

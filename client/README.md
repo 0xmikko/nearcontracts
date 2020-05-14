@@ -1,96 +1,44 @@
-<br />
-<br />
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<p>
-<img src="https://nearprotocol.com/wp-content/themes/near-19/assets/img/logo.svg?t=1553011311" width="240">
-</p>
+## Available Scripts
 
-<br />
-<br />
+In the project directory, you can run:
 
-## Template for NEAR dapps
-### Requirements
-##### IMPORTANT: Make sure you have the latest version of NEAR Shell and Node Version > 10.x 
+### `yarn start`
 
-1. [Node.js](https://nodejs.org/en/download/package-manager/)
-2. (optional) near-shell
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-```
-npm i -g near-shell
-```
-3. (optional) yarn
-```
-npm i -g yarn
-```
-### To run on NEAR testnet
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-```bash
-npm install && npm dev
-```
+### `yarn test`
 
-with yarn:
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```bash
-yarn && yarn dev
-```
+### `yarn build`
 
-The server that starts is for static assets and by default serves them to http://localhost:1234. Navigate there in your browser to see the app running!
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-NOTE: Both contract and client-side code will auto-reload once you change source files.
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-### To run tests
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-```bash
-npm test
-```
+### `yarn eject`
 
-with yarn:
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-```bash
-yarn test
-```
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-### Deploy
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-#### Step 1: Create account for the contract
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-You'll now want to authorize NEAR shell on your NEAR account, which will allow NEAR Shell to deploy contracts on your NEAR account's behalf \(and spend your NEAR account balance to do so\).
+## Learn More
 
-Type the command `near login` which opens a webpage at NEAR Wallet. Follow the instructions there and it will create a key for you, stored in the `/neardev` directory.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-#### Step 2:
-
-Modify `src/config.js` line that sets the account name of the contract. Set it to the account id from step 1.
-
-NOTE: When you use [create-near-app](https://github.com/nearprotocol/create-near-app) to create the project it'll infer and pre-populate name of contract based on project folder name.
-
-```javascript
-const CONTRACT_NAME = 'react-template'; /* TODO: Change this to your contract's name! */
-const DEFAULT_ENV = 'development';
-...
-```
-
-#### Step 3:
-
-Check the scripts in the package.json, for frontend and backend both, run the command:
-
-```bash
-npm run deploy
-```
-
-with yarn:
-
-```bash
-yarn deploy
-```
-
-NOTE: This uses [gh-pages](https://github.com/tschaub/gh-pages) to publish resulting website on GitHub pages. It'll only work if project already has repository set up on GitHub. Feel free to modify `deploy:pages` script in `package.json` to deploy elsewhere.
-
-### To Explore
-
-- `assembly/main.ts` for the contract code
-- `src/index.html` for the front-end HTML
-- `src/index.js` for the JavaScript front-end code and how to integrate contracts
-- `src/App.js` for the main React component
-- `src/main.test.js` for the JavaScript integration tests of smart contract
-- `src/App.test.js` for the main React component tests
+To learn React, check out the [React documentation](https://reactjs.org/).
