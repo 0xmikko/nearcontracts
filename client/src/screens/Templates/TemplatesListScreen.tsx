@@ -25,6 +25,7 @@ import { TemplatesList } from "../../containers/Templates/ListView";
 import { RootState } from "../../store";
 import actions from "../../store/actions";
 import { ToolbarButton } from "../../containers/ToolbarButton";
+import {DataScreen} from "../../components/DataScreen";
 
 export const TemplatesListScreen: React.FC = () => {
   const dispatch = useDispatch();
@@ -61,17 +62,7 @@ export const TemplatesListScreen: React.FC = () => {
         breadcrumbs={breadcrumbs}
         rightPanel={rightToolbar}
       />
-      {status === STATUS.SUCCESS ? (
-        <Container style={{ padding: 0 }}>
-          <Row>
-            <Col lg={12} md={12} xs={12}>
-              <TemplatesList items={data} onItemSelected={onItemSelected} />
-            </Col>
-          </Row>
-        </Container>
-      ) : (
-        <Loading />
-      )}
+      <DataScreen data={data} status={status} component={TemplatesList} />
     </div>
   );
 };

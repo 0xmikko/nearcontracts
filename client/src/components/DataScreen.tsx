@@ -20,10 +20,8 @@ export interface DataScreenComponentProps<T> {
 interface DataScreenProps<T> {
   data: T;
   status: STATUS;
-  component: (props: DataScreenComponentProps<T>) => React.ReactElement;
+  component: (props: DataScreenComponentProps<T>) => ReactElement<any, any> | null;
   onSelect?: (id: string) => void;
-  onSubmit?: (values: T) => void;
-  isSubmitted?: boolean;
 }
 
 export function DataScreen<T>({
@@ -31,9 +29,7 @@ export function DataScreen<T>({
   status,
   component,
   onSelect,
-  onSubmit,
-  isSubmitted,
-}: DataScreenProps<T>): ReactElement {
+}: DataScreenProps<T>): ReactElement<any, any> | null {
   switch (status) {
     default:
     case STATUS.LOADING:
@@ -44,6 +40,6 @@ export function DataScreen<T>({
 
     case STATUS.UPDATING:
     case STATUS.SUCCESS:
-      return component({ data, onSelect, onSubmit, isSubmitted });
+      return component({ data, onSelect });
   }
 }

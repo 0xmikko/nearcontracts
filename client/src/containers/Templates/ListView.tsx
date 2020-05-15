@@ -6,28 +6,31 @@
  *
  */
 
-import React from 'react';
-import {Table} from 'react-bootstrap';
-import {Template} from '../../core/template';
+import React from "react";
+import { Table } from "react-bootstrap";
+import { Template } from "../../core/template";
+import { DataScreenComponentProps } from "../../components/DataScreen";
 
-interface TemplatesListProps {
-  items: Template[];
-  onItemSelected: (id: string) => void;
-}
+export const TemplatesList: React.FC<DataScreenComponentProps<Template[]>> = ({
+  data,
+  onSelect,
+}) => {
 
-export const TemplatesList: React.FC<TemplatesListProps> = ({
-  items,
-  onItemSelected,
-}: TemplatesListProps) => {
+  const onPressed = (id: string) => {
+    if (onSelect) {
+      onSelect(id);
+    }
+  }
+
   const renderLine = (h: Template) => (
-    <tr onClick={() => onItemSelected(h.id)} key={h.id}>
+    <tr onClick={() => onPressed(h.id)} key={h.id}>
       <td className="tx-color-03 text-left tx-normal">{h.name}</td>
       <td className="tx-medium text-left">{h.description}</td>
       <td className="tx-medium text-left">{h.signed}</td>
     </tr>
   );
   // tx-teal tx-pink
-  const renderTableContent = items.map(h => renderLine(h));
+  const renderTableContent = data.map((h) => renderLine(h));
 
   return (
     <div className="card card-dashboard-table mg-t-20">
@@ -36,9 +39,9 @@ export const TemplatesList: React.FC<TemplatesListProps> = ({
         <Table className="table-dashboard mg-b-0" hover={true}>
           <thead>
             <tr>
-              <th style={{width: '25%'}}>Name</th>
+              <th style={{ width: "25%" }}>Name</th>
 
-              <th>Descrption</th>
+              <th>Description</th>
               <th>Signed</th>
               <th></th>
             </tr>
