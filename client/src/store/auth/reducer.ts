@@ -8,7 +8,7 @@
 
 import jwtDecode from 'jwt-decode';
 import * as auth from './';
-import {STATUS} from "../utils/status";
+import {STATUS} from "../../utils/status";
 import { Role } from '../../core/profile';
 
 interface TokenDTO {

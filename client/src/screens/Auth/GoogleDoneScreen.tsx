@@ -14,7 +14,7 @@ import {BeatLoader} from 'react-spinners';
 import actions from '../../store/actions';
 import {RootState} from '../../store';
 import {isAuthenticated} from '../../store/auth';
-import {STATUS} from "../../store/utils/status";
+import {STATUS} from "../../utils/status";
 
 interface OAuthCompleteProps {
   method: 'signup' | 'login';

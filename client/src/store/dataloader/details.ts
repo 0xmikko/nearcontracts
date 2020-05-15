@@ -1,6 +1,6 @@
 import {DataLoaderDetailsActions} from "./types";
 import * as actionTypes from "./index";
-import {STATUS} from "../utils/status";
+import {STATUS} from "../../utils/status";
 import {DataItem, DataObjectWithID} from "./reducer";
 
 export type DataLoaderDetailsState<T> = {

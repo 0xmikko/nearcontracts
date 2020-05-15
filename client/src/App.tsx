@@ -18,7 +18,7 @@ import {ResendScreen} from './screens/ResendScreen/ResendScreen';
 
 import actions from './store/actions';
 import {RootState} from './store';
-import {withTracker} from './utils/ga';
+import {withTracker} from './components/withTrackerHOC';
 
 import {
   APP_STATUS_AUTH_REQUIRED,

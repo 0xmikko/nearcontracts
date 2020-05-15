@@ -7,7 +7,7 @@
  */
 
 import {combineReducers} from 'redux';
-import {STATUS} from '../utils/status';
+import {STATUS} from '../../utils/status';
 import {createDataLoaderListReducer} from './list';
 import {createDataLoaderDetailsReducer} from './details';
 

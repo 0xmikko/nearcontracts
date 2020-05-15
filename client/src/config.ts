@@ -18,3 +18,6 @@ export const SSO_ADDR =
     ? 'https://crm-nanocontracts.herokuapp.com'
     : 'https://crm-nanocontracts.herokuapp.com'
 
+
+export const GA_TRACKER= 'UA-159014001-1';
+export const FB_PIXEL = ''

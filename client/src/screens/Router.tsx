@@ -4,6 +4,8 @@ import { withTracker } from "../utils/ga";
 import { Redirect, Route, Switch } from "react-router";
 import AppBar from "../components/AppBar/AppBar";
 import { TemplatesListScreen } from "./Templates/TemplatesListScreen";
+import { TemplateEditScreen } from "./Templates/TemplateEditScreen";
+import {TemplateDetailsScreen} from "./Templates/TemplateDetailsScreen";
 
 export const Router: React.FC = () => {
   return (
@@ -14,6 +16,11 @@ export const Router: React.FC = () => {
           exact
           path="/templates"
           component={withTracker(TemplatesListScreen)}
+        />
+        <PrivateRoute
+          exact
+          path="/templates/:id/edit"
+          component={withTracker(TemplateDetailsScreen)}
         />
 
         <Route path={"*"}>

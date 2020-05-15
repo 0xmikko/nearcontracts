@@ -7,7 +7,7 @@
  */
 
 import {RSAA} from 'redux-api-middleware';
-import {getApiById} from '../utils/api';
+import {getApiById} from '../../utils/api';
 import * as actionTypes from './index';
 import {withAuth} from '../auth';
 

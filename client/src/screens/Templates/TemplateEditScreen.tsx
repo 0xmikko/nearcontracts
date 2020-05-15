@@ -7,33 +7,42 @@
  */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { RouteComponentProps, useHistory } from "react-router";
 
 import PageHeader from "../../components/PageHeader/PageHeader";
 import { Breadcrumb } from "../../components/PageHeader/Breadcrumb";
 import { FormView } from "../../containers/Templates/FormView";
-import { Loading } from "../../components/Loading";
 
 import { getDetailsItem } from "../../store/dataloader";
-import { STATUS } from "../../store/utils/status";
+import { STATUS } from "../../utils/status";
 import { RootState } from "../../store";
 import actions from "../../store/actions";
-import { Template } from "../../core/template";
-import { DataScreen } from "../../components/DataScreen";
-import {DataFormScreen} from "../../components/DataFormScreen";
+import {Template, TemplateNewDefault} from "../../core/template";
+import { DataFormScreen } from "../../components/DataFormScreen";
 
-export const TemplateEditScreen: React.FC = () => {
+interface MatchParams {
+  id: string;
+}
+
+interface TemplateEditScreenProps extends RouteComponentProps<MatchParams> {}
+
+export const TemplateEditScreen: React.FC<TemplateEditScreenProps> = ({
+  match: {
+    params: { id },
+  },
+}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [hash, setHash] = useState("0");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  useEffect(() => {
+    if (id && id !== "new") dispatch(actions.templates.getDetails(id));
+  }, [id]);
+
   const operationStatus = useSelector(
     (state: RootState) => state.operations.data[hash]?.data?.status
   );
-
-  const id = useSelector((state: RootState) => state?.auth?.access?.user_id);
-  console.log(id);
 
   // TODO: Move status to new Dataloader component
 
@@ -52,27 +61,12 @@ export const TemplateEditScreen: React.FC = () => {
     }
   }, [hash, operationStatus]);
 
-  useEffect(() => {
-    if (id) dispatch(actions.templates.getDetails(id));
-  }, [dispatch, id]);
-
   const dataItem = useSelector((state: RootState) =>
     getDetailsItem(state.templates.Details, id || "0")
   );
 
-  if (!dataItem || !dataItem.data) {
-    return <Loading />;
-  }
-
-  if (dataItem.status === STATUS.FAILURE) {
-    return <>"Oops! Error happened!"</>;
-  }
-
-  if (dataItem.status === STATUS.LOADING) {
-    return <Loading />;
-  }
-
-  const { data, status } = dataItem;
+  const data: Template | undefined = (id === 'new') ? TemplateNewDefault : dataItem?.data;
+  const status: STATUS = (id === 'new') ? STATUS.SUCCESS : dataItem?.status || STATUS.LOADING;
 
   const breadcrumbs: Breadcrumb[] = [
     {

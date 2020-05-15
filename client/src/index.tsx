@@ -14,6 +14,7 @@ import {fas} from '@fortawesome/free-solid-svg-icons'
 import './index.css';
 import App from './App';
 import configureStore from './store';
+import {GA_TRACKER} from "./config";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -27,7 +28,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Google analytics
-ReactGA.initialize('UA-159014001-1');
+ReactGA.initialize(GA_TRACKER);
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 const options = {

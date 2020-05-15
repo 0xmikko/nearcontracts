@@ -1,4 +1,4 @@
-import {STATUS} from "../utils/status";
+import {STATUS} from "../../utils/status";
 import {DataLoaderListActions} from "./types";
 import * as actionTypes from "./index";
 import {DataObjectWithID} from "./reducer";

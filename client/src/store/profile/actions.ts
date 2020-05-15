@@ -7,7 +7,7 @@
  */
 
 import {RSAA, RSAAAction} from 'redux-api-middleware';
-import {getFullAPIAddress} from '../utils/api';
+import {getFullAPIAddress} from '../../utils/api';
 import {withAuth} from '../auth';
 import {AuthPayload} from '../auth/reducer';
 import {ThunkAction} from 'redux-thunk';

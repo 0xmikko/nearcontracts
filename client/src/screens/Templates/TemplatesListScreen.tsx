@@ -20,7 +20,7 @@ import {
 } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { Loading } from "../../components/Loading";
-import { STATUS } from "../../store/utils/status";
+import { STATUS } from "../../utils/status";
 import { TemplatesList } from "../../containers/Templates/ListView";
 import { RootState } from "../../store";
 import actions from "../../store/actions";

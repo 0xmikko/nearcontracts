@@ -6,7 +6,7 @@
  */
 
 import React, { ReactElement } from "react";
-import { STATUS } from "../store/utils/status";
+import { STATUS } from "../utils/status";
 import { Loading } from "./Loading";
 import FailureView from "./Failure";
 import { FormikFormViewProps } from "./Forms/FormikForm";

@@ -8,7 +8,7 @@
 import {Action} from 'redux';
 import {ThunkAction} from 'redux-thunk';
 import {RSAA, RSAAAction, RSAAResultAction,} from 'redux-api-middleware';
-import {getFullAPIAddress} from '../utils/api';
+import {getFullAPIAddress} from '../../utils/api';
 import * as actionTypes from './';
 
 import {RootState} from '../index';

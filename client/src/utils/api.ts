@@ -6,7 +6,7 @@
  *
  */
 
-import {BACKEND_ADDR} from '../../config';
+import {BACKEND_ADDR} from '../config';
 
 export const getFullAPIAddress = (
   url: string,
