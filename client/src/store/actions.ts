@@ -9,9 +9,10 @@
 import * as auth from './auth/actions';
 import * as profile from './profile/actions';
 import * as templates from './templates/actions';
-
+import * as operations from './operations/actions';
 export default {
   auth,
   profile,
   templates,
+  operations,
 };

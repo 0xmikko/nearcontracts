@@ -30,7 +30,6 @@ export const AppBar = () => {
       <AppBarElement title="My contracts" to="/contracts" key="contracts" />
       <AppBarElement title="Templates" to="/templates" key="bonds" />
       <AppBarElement title="Partners" to="/partners" key="companies" />
-      <AppBarElement title="Wallet" to="/wallet" key="wallet" />
     </>
   );
 

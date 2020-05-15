@@ -24,13 +24,13 @@ import { STATUS } from "../../store/utils/status";
 import { TemplatesList } from "../../containers/Templates/ListView";
 import { RootState } from "../../store";
 import actions from "../../store/actions";
+import { ToolbarButton } from "../../containers/ToolbarButton";
 
 export const TemplatesListScreen: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
-    console.log("QQ")
     dispatch(actions.templates.getList());
   }, []);
 
@@ -45,14 +45,22 @@ export const TemplatesListScreen: React.FC = () => {
     },
   ];
 
-  const onPay = () => {
-    history.push("/payments/new/edit/");
-  };
   const onItemSelected = (id: string) => history.push(`/templates/${id}`);
+
+  const rightToolbar = (
+    <ToolbarButton
+      title={"+ Template"}
+      onClick={() => history.push("/templates/new/")}
+    />
+  );
 
   return (
     <div className="content content-fixed">
-      <PageHeader title={"Templates"} breadcrumbs={breadcrumbs} />
+      <PageHeader
+        title={"Templates"}
+        breadcrumbs={breadcrumbs}
+        rightPanel={rightToolbar}
+      />
       {status === STATUS.SUCCESS ? (
         <Container style={{ padding: 0 }}>
           <Row>
