@@ -1,7 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BasicRepositoryI } from "../core/basic";
+import { Template } from "./template";
 
-export type ContractStage = "Draft" | 'Negotiating' | "Signed" | "Finished" | "Cancelled" | 'Hidden';
+
 
 @Entity()
 export class Contract {
@@ -14,14 +15,20 @@ export class Contract {
   @Column()
   date: Date;
 
+  @Column({ default: "Draft" })
+  status: ContractStage;
+
   @Column({ default: "" })
   content: string;
 
   @Column({ default: "" })
   ownerID: string;
 
-  @Column({default: ""})
+  @Column({ default: "" })
   partnerID: string;
+
+  @ManyToOne((type) => Template, (template) => template.contracts)
+  template: Template;
 }
 
 export interface ContractDTO {

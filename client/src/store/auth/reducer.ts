@@ -37,7 +37,7 @@ export interface AuthActionsType {
   payload: AuthPayload
 }
 
-const initialState = {
+const initialState : AuthStateType = {
   access: undefined,
   refresh: undefined,
   errors: {},

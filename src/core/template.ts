@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import { BasicRepositoryI } from "../core/basic";
+import {Contract} from "./contract";
 
 @Entity()
 export class Template {
@@ -17,6 +18,9 @@ export class Template {
 
   @Column({default: false})
   isPublic: boolean;
+
+  @OneToMany(type => Contract, contract => contract.template)
+  contracts: Contract[];
 }
 
 export interface TemplateDTO {
