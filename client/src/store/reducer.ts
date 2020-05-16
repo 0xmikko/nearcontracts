@@ -8,12 +8,14 @@
 
 import { combineReducers } from "redux";
 import auth from "./auth/reducer";
+import contracts from './contracts/reducer'
 import operations from './operations/reducer'
 import profile from "./profile/reducer";
 import templates from "./templates/reducer";
 
 export default combineReducers({
   auth,
+  contracts,
   operations,
   profile,
   templates,

@@ -6,12 +6,15 @@
  *
  */
 
-import * as auth from './auth/actions';
-import * as profile from './profile/actions';
-import * as templates from './templates/actions';
-import * as operations from './operations/actions';
+import * as auth from "./auth/actions";
+import * as contracts from "./contracts/actions";
+import * as profile from "./profile/actions";
+import * as templates from "./templates/actions";
+import * as operations from "./operations/actions";
+
 export default {
   auth,
+  contracts,
   profile,
   templates,
   operations,

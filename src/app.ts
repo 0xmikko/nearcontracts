@@ -9,6 +9,7 @@ import { TYPES } from "./types";
 import { TemplatesController } from "./controllers/templatesController";
 import errorHandler from "./middleware/errorHandler";
 import { loginRequireMiddleware} from './middleware/loginRequired'
+import {ContractsController} from "./controllers/contractsController";
 
 export function createApp(config: ConfigParams): Promise<Application> {
   return new Promise<Application>(async (resolve) => {
@@ -48,12 +49,23 @@ export function createApp(config: ConfigParams): Promise<Application> {
       TYPES.TemplatesController
     );
 
+    const contractsController = container.get<ContractsController>(
+        TYPES.TemplatesController
+    );
+
+
     app.get("/", (req, res) => {
       console.log(req);
       res.status(200).send("It works!");
     });
 
-    // Documents Controller
+    // Contracts Controller
+    app.get("/api/contracts/", loginRequired, contractsController.list());
+    app.get("/api/contracts/:id", loginRequired, contractsController.retrieve());
+    app.post("/api/contracts/", loginRequired, contractsController.create());
+    app.put("/api/contracts/:id", loginRequired, contractsController.update());
+
+    // Templates Controller
     app.get("/api/templates/", loginRequired, templatesController.list());
     app.get("/api/templates/:id", loginRequired, templatesController.retrieve());
     app.post("/api/templates/", loginRequired, templatesController.create());

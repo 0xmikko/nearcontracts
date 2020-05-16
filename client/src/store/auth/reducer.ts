@@ -6,9 +6,9 @@
  *
  */
 
-import jwtDecode from 'jwt-decode';
-import * as auth from './';
-import {STATUS} from "../../utils/status";
+import jwtDecode from "jwt-decode";
+import * as auth from "./";
+import { STATUS } from "../../utils/status";
 
 interface TokenDTO {
   token: string;
@@ -34,10 +34,10 @@ export interface AuthPayload {
 
 export interface AuthActionsType {
   type: string;
-  payload: AuthPayload
+  payload: AuthPayload;
 }
 
-const initialState : AuthStateType = {
+const initialState: AuthStateType = {
   access: undefined,
   refresh: undefined,
   errors: {},
@@ -47,7 +47,7 @@ const initialState : AuthStateType = {
 
 export default (
   state: AuthStateType = initialState,
-  action: AuthActionsType,
+  action: AuthActionsType
 ): AuthStateType => {
   console.log(action);
 
@@ -57,12 +57,12 @@ export default (
       return {
         ...state,
         access: {
-          token: action.payload.access,
           ...jwtDecode<TokenDTO>(action.payload.access),
+          token: action.payload.access,
         },
         refresh: {
-          token: action.payload.refresh,
-          ...jwtDecode<TokenDTO>(action.payload.refresh || ''),
+          ...jwtDecode<TokenDTO>(action.payload.refresh || ""),
+          token: action.payload.refresh || "",
         },
         // profile: undefined,
         // isVerified: undefined,
@@ -89,7 +89,7 @@ export default (
         errors: action.payload.response || {
           non_field_errors: action.payload.statusText,
         },
-        status: STATUS.FAILURE
+        status: STATUS.FAILURE,
       };
 
     case auth.LOGOUT:
@@ -110,5 +110,3 @@ export default (
       return state;
   }
 };
-
-

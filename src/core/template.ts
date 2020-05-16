@@ -1,25 +1,25 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BasicRepositoryI } from "../core/basic";
-import {Contract} from "./contract";
+import { Contract } from "./contract";
 
 @Entity()
 export class Template {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({default: ''})
+  @Column({ default: "" })
   name: string;
 
-  @Column({default: ''})
+  @Column({ default: "" })
   content: string;
 
-  @Column({default: ''})
+  @Column({ default: "" })
   ownerID: string;
 
-  @Column({default: false})
+  @Column({ default: false })
   isPublic: boolean;
 
-  @OneToMany(type => Contract, contract => contract.template)
+  @OneToMany((type) => Contract, (contract) => contract.template)
   contracts: Contract[];
 }
 
@@ -31,25 +31,27 @@ export interface TemplateDTO {
 }
 
 export const templateDTOSchema = {
-  type: 'object',
-  required: ['id', 'name', 'content', 'isPublic'],
+  type: "object",
+  required: ["id", "name", "content", "isPublic"],
   properties: {
     id: {
-      type: 'string',
+      type: "string",
     },
     name: {
-      type: 'string',
+      type: "string",
     },
     content: {
-      type: 'string',
+      type: "string",
     },
     isPublic: {
-      type: 'boolean',
-    }
+      type: "boolean",
+    },
   },
 };
 
-export interface TemplatesRepositoryI extends BasicRepositoryI<Template> {}
+export interface TemplatesRepositoryI extends BasicRepositoryI<Template> {
+  listByUser(userID: string): Promise<Template[] | undefined>;
+}
 
 export interface TemplatesServiceI {
   create(userID: string, dto: TemplateDTO): Promise<Template>;

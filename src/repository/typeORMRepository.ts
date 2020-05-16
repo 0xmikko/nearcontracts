@@ -19,7 +19,7 @@ export class TypeORMRepository<T> implements BasicRepositoryI<T> {
   list(): Promise<T[] | undefined> {
     return getManager()
       .getRepository<T>(this._entityClass)
-      .find();
+      .find({});
   }
 
   insert(item: T): Promise<string | undefined> {

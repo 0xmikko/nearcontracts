@@ -2,7 +2,13 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BasicRepositoryI } from "../core/basic";
 import { Template } from "./template";
 
-
+export type ContractStage =
+  | "Draft"
+  | "Negotiating"
+  | "Signed"
+  | "Finished"
+  | "Cancelled"
+  | "Hidden";
 
 @Entity()
 export class Contract {
@@ -31,11 +37,15 @@ export class Contract {
   template: Template;
 }
 
-export interface ContractDTO {
+export interface ContractCreateDTO {
+  template_id: string;
+}
+
+export interface ContractUpdateDTO {
   id: string;
   name: string;
+  date: Date;
   content: string;
-  isPublic: boolean;
 }
 
 export const contractDTOSchema = {
@@ -60,8 +70,8 @@ export const contractDTOSchema = {
 export interface ContractsRepositoryI extends BasicRepositoryI<Contract> {}
 
 export interface ContractsServiceI {
-  create(userID: string, dto: ContractDTO): Promise<Contract>;
+  create(userID: string, dto: ContractCreateDTO): Promise<Contract>;
   list(userID: string): Promise<Contract[] | undefined>;
   findById(userID: string, id: string): Promise<Contract | undefined>;
-  update(userID: string, dto: ContractDTO): Promise<Contract | undefined>;
+  update(userId: string, dto: ContractUpdateDTO): Promise<Contract | undefined>;
 }

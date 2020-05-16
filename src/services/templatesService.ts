@@ -27,7 +27,7 @@ export class TemplatesService implements TemplatesServiceI {
   }
 
   list(userId: string): Promise<Template[] | undefined> {
-    return this._repository.list();
+    return this._repository.listByUser(userId);
   }
 
   findById(userId: string, id: string): Promise<Template | undefined> {
