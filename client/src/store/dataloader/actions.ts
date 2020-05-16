@@ -135,6 +135,8 @@ export const createDataLoaderCreateUpdateDataAction = <T>(
     })
   );
 
+  console.log("HASHHH", hash)
+
   if (action.error) {
     dispatch(updateStatus(hash || "0", STATUS.FAILURE, action.payload.message));
   } else {

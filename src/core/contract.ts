@@ -48,21 +48,12 @@ export interface ContractUpdateDTO {
   content: string;
 }
 
-export const contractDTOSchema = {
+export const contractCreateDTOSchema = {
   type: "object",
-  required: ["id", "name", "content", "isPublic"],
+  required: ["template_id"],
   properties: {
-    id: {
+    template_id: {
       type: "string",
-    },
-    name: {
-      type: "string",
-    },
-    content: {
-      type: "string",
-    },
-    isPublic: {
-      type: "boolean",
     },
   },
 };

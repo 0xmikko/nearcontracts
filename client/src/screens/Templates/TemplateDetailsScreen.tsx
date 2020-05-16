@@ -21,7 +21,7 @@ import { STATUS } from "../../utils/status";
 import { Loading } from "../../components/Loading";
 import { getDetailsItem } from "../../store/dataloader";
 import { DataScreen } from "../../components/DataLoader/DataScreen";
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 interface MatchParams {
   id: string;
@@ -60,19 +60,30 @@ export const TemplateDetailsScreen: React.FC<TemplateDetailsScreenProps> = ({
   ];
 
   const rightToolbar = (
-      <div className="d-none d-md-block">
-        <Button
-            className="btn-sm pd-x-15 btn-brand-01 btn-uppercase"
-            onClick={() => history.push(`/templates/${id}/edit/`)}
-        >
-          Edit
-        </Button>
-      </div>
+    <div className="d-none d-md-block">
+      <Button
+        className="btn-sm pd-x-15 btn-brand-01 btn-uppercase"
+        onClick={() => history.push(`/templates/${id}/edit/`)}
+        style={{marginRight: '10px'}}
+      >
+        Edit
+      </Button>
+      <Button
+          className="btn-sm pd-x-15 btn-brand-01 btn-uppercase"
+          onClick={() => history.push(`/contracts/new_from_template/${id}`)}
+      >
+        Create Contract
+      </Button>
+    </div>
   );
 
   return (
     <div className="content content-fixed">
-      <PageHeader title={data.name} breadcrumbs={breadcrumbs} rightPanel={rightToolbar} />
+      <PageHeader
+        title={data.name}
+        breadcrumbs={breadcrumbs}
+        rightPanel={rightToolbar}
+      />
       <DataScreen data={data} status={status} component={DetailsView} />
     </div>
   );

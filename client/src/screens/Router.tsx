@@ -9,6 +9,7 @@ import { TemplateDetailsScreen } from "./Templates/TemplateDetailsScreen";
 import { ContractsListScreen } from "./Contracts/ContractsListScreen";
 import { ContractEditScreen } from "./Contracts/ContractEditScreen";
 import { ContractDetailsScreen } from "./Contracts/ContractDetailsScreen";
+import {ContractNewScreen} from "./Contracts/ContractNewScreen";
 
 export const Router: React.FC = () => {
   return (
@@ -34,6 +35,11 @@ export const Router: React.FC = () => {
           exact
           path="/contracts"
           component={withTracker(ContractsListScreen)}
+        />
+        <PrivateRoute
+            exact
+            path="/contracts/new_from_template/:template_id"
+            component={withTracker(ContractNewScreen)}
         />
         <PrivateRoute
           exact

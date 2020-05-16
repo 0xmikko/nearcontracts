@@ -1,6 +1,6 @@
 import {
   ContractCreateDTO,
-  contractDTOSchema,
+  contractCreateDTOSchema,
   ContractsServiceI,
   ContractUpdateDTO,
 } from "../core/contract";
@@ -17,7 +17,7 @@ export class ContractsController {
 
   constructor(@inject(TYPES.ContractsService) service: ContractsServiceI) {
     this._service = service;
-    this._createDTOValidate = new Ajv().compile(contractDTOSchema);
+    this._createDTOValidate = new Ajv().compile(contractCreateDTOSchema);
   }
 
   create() {
