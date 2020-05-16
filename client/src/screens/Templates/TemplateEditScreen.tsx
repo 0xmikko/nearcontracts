@@ -77,7 +77,7 @@ export const TemplateEditScreen: React.FC<TemplateEditScreenProps> = ({
   const breadcrumbs: Breadcrumb[] = [
     {
       url: "/template",
-      title: data?.name || '',
+      title: 'Templates',
     },
   ];
 

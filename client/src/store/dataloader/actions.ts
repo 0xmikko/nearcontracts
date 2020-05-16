@@ -98,7 +98,6 @@ export const createDataLoaderCreateUpdateDataAction = <T>(
 ): ThunkAction<void, RootState, unknown, Action<string>> => async (
   dispatch
 ) => {
-
   dispatch(updateStatus(hash || "0", STATUS.UPDATING));
 
   const api = id.startsWith("new")
@@ -137,9 +136,7 @@ export const createDataLoaderCreateUpdateDataAction = <T>(
   );
 
   if (action.error) {
-    dispatch(
-        updateStatus(hash || "0", STATUS.FAILURE, action.payload.message)
-    );
+    dispatch(updateStatus(hash || "0", STATUS.FAILURE, action.payload.message));
   } else {
     dispatch(updateStatus(hash || "0", STATUS.SUCCESS));
   }
