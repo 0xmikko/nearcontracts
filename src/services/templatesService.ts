@@ -1,34 +1,29 @@
 import {
   Template,
+  TemplateDTO,
   TemplatesRepositoryI,
   TemplatesServiceI,
-} from '../core/template';
-import {inject, injectable} from 'inversify';
-import {TYPES} from '../types';
+} from "../core/template";
+import { inject, injectable } from "inversify";
+import { TYPES } from "../types";
 
 @injectable()
 export class TemplatesService implements TemplatesServiceI {
   private _repository: TemplatesRepositoryI;
 
   public constructor(
-    @inject(TYPES.TemplatesRepository) repository: TemplatesRepositoryI,
+    @inject(TYPES.TemplatesRepository) repository: TemplatesRepositoryI
   ) {
     this._repository = repository;
   }
 
-  create(userId: string, content: string, isPublic: boolean): Promise<Template> {
-  return new Promise<Template>(async (resolve, reject) => {
-    try {
-      const newDoc = new Template();
-      newDoc.content = content;
-      newDoc.owner = userId;
-      newDoc.isPublic = isPublic;
-      this._repository.upsert(newDoc);
-    } catch (e) {
-      reject(e);
-    }
-  })
-
+  create(userId: string, dto: TemplateDTO): Promise<Template> {
+    const newDoc = new Template();
+    newDoc.content = dto.content;
+    newDoc.name = dto.name;
+    newDoc.ownerID = userId;
+    newDoc.isPublic = dto.isPublic;
+    return this._repository.upsert(newDoc);
   }
 
   list(userId: string): Promise<Template[] | undefined> {
@@ -39,9 +34,7 @@ export class TemplatesService implements TemplatesServiceI {
     return this._repository.findOne(id);
   }
 
-  update(id: string, content: string): Promise<void> {
+  update(id: string, dto: TemplateDTO): Promise<void> {
     return Promise.resolve(undefined);
   }
-
-
 }

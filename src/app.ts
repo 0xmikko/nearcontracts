@@ -55,6 +55,9 @@ export function createApp(config: ConfigParams): Promise<Application> {
 
     // Documents Controller
     app.get("/api/templates/", loginRequired, templatesController.list());
+    app.get("/api/templates/:id", loginRequired, templatesController.retrieve());
+    app.post("/api/templates/", loginRequired, templatesController.create());
+    app.put("/api/templates/:id", loginRequired, templatesController.update());
 
     // ERROR HANDLER
     app.use(errorHandler);

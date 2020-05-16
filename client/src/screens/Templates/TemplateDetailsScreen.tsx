@@ -20,7 +20,7 @@ import actions from "../../store/actions";
 import { STATUS } from "../../utils/status";
 import { Loading } from "../../components/Loading";
 import { getDetailsItem } from "../../store/dataloader";
-import { DataScreen } from "../../components/DataScreen";
+import { DataScreen } from "../../components/DataLoader/DataScreen";
 
 interface MatchParams {
   id: string;

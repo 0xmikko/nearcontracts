@@ -6,9 +6,9 @@
  */
 
 import React, { ReactElement } from "react";
-import { STATUS } from "../utils/status";
-import { Loading } from "./Loading";
-import FailureView from "./Failure";
+import { STATUS } from "../../utils/status";
+import { Loading } from "../Loading";
+import FailureView from "../Failure";
 
 export interface DataScreenComponentProps<T> {
   data: T;

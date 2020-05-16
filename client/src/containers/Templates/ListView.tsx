@@ -9,7 +9,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import { Template } from "../../core/template";
-import { DataScreenComponentProps } from "../../components/DataScreen";
+import { DataScreenComponentProps } from "../../components/DataLoader/DataScreen";
 
 export const TemplatesList: React.FC<DataScreenComponentProps<Template[]>> = ({
   data,
@@ -26,7 +26,7 @@ export const TemplatesList: React.FC<DataScreenComponentProps<Template[]>> = ({
     <tr onClick={() => onPressed(h.id)} key={h.id}>
       <td className="tx-color-03 text-left tx-normal">{h.name}</td>
       <td className="tx-medium text-left">{h.description}</td>
-      <td className="tx-medium text-left">{h.signed}</td>
+      <td className="tx-medium text-left">{h.isPublic}</td>
     </tr>
   );
   // tx-teal tx-pink

@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button, FormLabel} from 'react-bootstrap';
+import React from "react";
+import { Button, FormLabel } from "react-bootstrap";
 import {
   ErrorMessage,
   Field,
@@ -7,14 +7,15 @@ import {
   Formik,
   FormikHelpers,
   FormikProps,
-} from 'formik';
-import * as yup from 'yup';
-import AutoCompleteField, {TypeaheadOptions} from './AutoCompleteField';
+} from "formik";
+import * as yup from "yup";
+import AutoCompleteField, { TypeaheadOptions } from "./AutoCompleteField";
+import { MarkdownField } from "./MarkdownField";
 
 export interface FieldI {
   label: string;
   placeholder?: string;
-  type?: 'input' | 'textarea' | 'autocomplete';
+  type?: "input" | "textarea" | "autocomplete" | "markdown";
   options?: TypeaheadOptions[];
   onChange?: (value: string) => void;
   disabled?: boolean;
@@ -28,7 +29,7 @@ export interface FormikFormViewProps<T> {
 
 interface FormikFormProps<T, S> {
   formSchema: yup.ObjectSchema;
-  fields: {[T in keyof yup.InferType<S>]: FieldI};
+  fields: { [T in keyof yup.InferType<S>]: FieldI };
   initialValues: T;
   onSubmit: (values: T) => void;
   onChange?: (event?: React.FormEvent<HTMLFormElement>) => void;
@@ -51,21 +52,21 @@ export function FormikForm<T, S>({
   function getComponent(
     name: string,
     f: FieldI,
-    {setFieldValue}: FormikHelpers<T>,
+    { setFieldValue }: FormikHelpers<T>
   ): React.ReactElement {
     switch (f.type) {
       default:
-      case 'input':
-      case 'textarea':
+      case "input":
+      case "textarea":
         return (
           <Field
             placeholder={f.placeholder || f.label}
             name={name}
-            component={f.type || 'input'}
+            component={f.type || "input"}
             disabled={f.disabled}
           />
         );
-      case 'autocomplete':
+      case "autocomplete":
         return (
           <AutoCompleteField
             name={name}
@@ -80,17 +81,30 @@ export function FormikForm<T, S>({
             }}
           />
         );
+      case "markdown":
+        return (
+          <MarkdownField
+            label={f.label}
+            name={name}
+            onChange={(value: string) => {
+                if (f.onChange) {
+                    f.onChange(value);
+                }
+                setFieldValue(name, value);
+            }}
+          />
+        );
     }
   }
 
   const fieldsRendered = (props: FormikHelpers<T>) =>
-    Object.entries(fields).map(e => {
+    Object.entries(fields).map((e) => {
       const name = e[0];
       const f = e[1] as FieldI;
 
       const components: Record<string, FieldComponent> = {
-        input: 'input',
-        textarea: 'textarea',
+        input: "input",
+        textarea: "textarea",
       };
 
       return (
@@ -108,14 +122,16 @@ export function FormikForm<T, S>({
       <Formik
         validationSchema={formSchema}
         initialValues={initialValues}
-        onSubmit={onSubmit}>
+        onSubmit={onSubmit}
+      >
         {(props: FormikHelpers<T>) => (
           <Form className="form" onBlur={onChange}>
             {fieldsRendered(props)}
             <Button
-              type={'submit'}
+              type={"submit"}
               className="theme-button"
-              disabled={isSubmitted}>
+              disabled={isSubmitted}
+            >
               Submit
             </Button>
           </Form>

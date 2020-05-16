@@ -25,7 +25,7 @@ import { TemplatesList } from "../../containers/Templates/ListView";
 import { RootState } from "../../store";
 import actions from "../../store/actions";
 import { ToolbarButton } from "../../containers/ToolbarButton";
-import {DataScreen} from "../../components/DataScreen";
+import { DataScreen } from "../../components/DataLoader/DataScreen";
 
 export const TemplatesListScreen: React.FC = () => {
   const dispatch = useDispatch();
@@ -46,12 +46,12 @@ export const TemplatesListScreen: React.FC = () => {
     },
   ];
 
-  const onItemSelected = (id: string) => history.push(`/templates/${id}`);
+  const onSelect = (id: string) => history.push(`/templates/${id}`);
 
   const rightToolbar = (
     <ToolbarButton
       title={"+ Template"}
-      onClick={() => history.push("/templates/new/")}
+      onClick={() => history.push("/templates/new/edit")}
     />
   );
 
@@ -62,7 +62,12 @@ export const TemplatesListScreen: React.FC = () => {
         breadcrumbs={breadcrumbs}
         rightPanel={rightToolbar}
       />
-      <DataScreen data={data} status={status} component={TemplatesList} />
+      <DataScreen
+        data={data}
+        status={status}
+        component={TemplatesList}
+        onSelect={onSelect}
+      />
     </div>
   );
 };

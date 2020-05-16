@@ -3,13 +3,13 @@ export interface Template {
     name: string,
     description: string,
     content: string,
-    signed: boolean,
+    isPublic: boolean,
 }
 
-export const TemplateNewDefault = {
+export const TemplateNewDefault : Template = {
     id: 'new',
     name: "New Template",
     description: "",
     content: "",
-    signed: false,
+    isPublic: false,
 }

@@ -6,7 +6,7 @@
  *
  */
 
-import React from "react";
+import React, { useState } from "react";
 import * as yup from "yup";
 import {
   FormikForm,
@@ -14,9 +14,12 @@ import {
 } from "../../components/Forms/FormikForm";
 import { Template } from "../../core/template";
 import { Loading } from "../../components/Loading";
+import ReactMarkdown from "react-markdown";
+import { Col, Row } from "react-bootstrap";
+import AceEditor from "react-ace";
 
 const formSchema = yup.object({
-  name: yup.string().required(),
+  name: yup.string().required().min(3),
 });
 
 interface FormViewProfileProps extends FormikFormViewProps<Template> {}
@@ -29,6 +32,10 @@ export const FormView: React.FC<FormViewProfileProps> = ({
   const fields = {
     name: {
       label: "Template name",
+    },
+    content: {
+      label: "Template name",
+      type: "markdown",
     },
   };
 

@@ -6,10 +6,10 @@
  */
 
 import React, { ReactElement } from "react";
-import { STATUS } from "../utils/status";
-import { Loading } from "./Loading";
-import FailureView from "./Failure";
-import { FormikFormViewProps } from "./Forms/FormikForm";
+import { STATUS } from "../../utils/status";
+import { Loading } from "../Loading";
+import FailureView from "../Failure";
+import { FormikFormViewProps } from "../Forms/FormikForm";
 
 interface DataScreenFormProps<T> {
   data?: T;

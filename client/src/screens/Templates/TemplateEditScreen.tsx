@@ -16,9 +16,10 @@ import { FormView } from "../../containers/Templates/FormView";
 import { getDetailsItem } from "../../store/dataloader";
 import { STATUS } from "../../utils/status";
 import { RootState } from "../../store";
+import { Template, TemplateNewDefault } from "../../core/template";
+import { DataFormScreen } from "../../components/DataLoader/DataFormScreen";
+
 import actions from "../../store/actions";
-import {Template, TemplateNewDefault} from "../../core/template";
-import { DataFormScreen } from "../../components/DataFormScreen";
 
 interface MatchParams {
   id: string;
@@ -37,7 +38,10 @@ export const TemplateEditScreen: React.FC<TemplateEditScreenProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
-    if (id && id !== "new") dispatch(actions.templates.getDetails(id));
+    if (id && id !== "new") {
+      console.log("ID: ", id);
+      dispatch(actions.templates.getDetails(id));
+    }
   }, [id]);
 
   const operationStatus = useSelector(
@@ -65,13 +69,15 @@ export const TemplateEditScreen: React.FC<TemplateEditScreenProps> = ({
     getDetailsItem(state.templates.Details, id || "0")
   );
 
-  const data: Template | undefined = (id === 'new') ? TemplateNewDefault : dataItem?.data;
-  const status: STATUS = (id === 'new') ? STATUS.SUCCESS : dataItem?.status || STATUS.LOADING;
+  const data: Template | undefined =
+    id === "new" ? TemplateNewDefault : dataItem?.data;
+  const status: STATUS =
+    id === "new" ? STATUS.SUCCESS : dataItem?.status || STATUS.LOADING;
 
   const breadcrumbs: Breadcrumb[] = [
     {
-      url: "/profile",
-      title: "profile",
+      url: "/template",
+      title: data?.name || '',
     },
   ];
 
@@ -81,12 +87,12 @@ export const TemplateEditScreen: React.FC<TemplateEditScreenProps> = ({
     setHash(newHash);
 
     // Emit data
-    dispatch(actions.templates.createUpdateDetails("new", values, newHash));
+    dispatch(actions.templates.createUpdateDetails(values.id, values, newHash));
   };
 
   return (
     <div className="content content-fixed">
-      <PageHeader title="Profile" breadcrumbs={breadcrumbs} />
+      <PageHeader title={data?.name || ''} breadcrumbs={breadcrumbs} />
       <DataFormScreen
         data={data}
         status={status}

@@ -6,21 +6,50 @@ export class Template {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({default: ''})
+  name: string;
+
+  @Column({default: ''})
   content: string;
 
-  @Column()
-  owner: string;
+  @Column({default: ''})
+  ownerID: string;
 
-  @Column()
+  @Column({default: false})
   isPublic: boolean;
 }
+
+export interface TemplateDTO {
+  id: string;
+  name: string;
+  content: string;
+  isPublic: boolean;
+}
+
+export const templateDTOSchema = {
+  type: 'object',
+  required: ['id', 'name', 'content', 'isPublic'],
+  properties: {
+    id: {
+      type: 'string',
+    },
+    name: {
+      type: 'string',
+    },
+    content: {
+      type: 'string',
+    },
+    isPublic: {
+      type: 'boolean',
+    }
+  },
+};
 
 export interface TemplatesRepositoryI extends BasicRepositoryI<Template> {}
 
 export interface TemplatesServiceI {
-  create(userID: string, content: string, isPublic: boolean): Promise<Template>;
+  create(userID: string, dto: TemplateDTO): Promise<Template>;
   list(userID: string): Promise<Template[] | undefined>;
   findById(userID: string, id: string): Promise<Template | undefined>;
-  update(id: string, content: string): Promise<void>;
+  update(userID: string, dto: TemplateDTO): Promise<void>;
 }
