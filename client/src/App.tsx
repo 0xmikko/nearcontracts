@@ -6,19 +6,19 @@
  *
  */
 
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Redirect, Route, Switch} from 'react-router';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, Route, Switch } from "react-router";
 
-import {LoginScreen} from './screens/Auth/LoginScreen/LoginScreen';
-import {GoogleAuthDoneScreen} from './screens/Auth/GoogleDoneScreen';
-import {SplashScreen} from './screens/SplashScreen';
-import {EmailConfirmScreen} from './screens/Auth/EmailConfirmScreen';
-import {ResendScreen} from './screens/ResendScreen/ResendScreen';
+import { LoginScreen } from "./screens/Auth/LoginScreen/LoginScreen";
+import { GoogleAuthDoneScreen } from "./screens/Auth/GoogleDoneScreen";
+import { SplashScreen } from "./screens/SplashScreen";
+import { EmailConfirmScreen } from "./screens/Auth/EmailConfirmScreen";
+import { ResendScreen } from "./screens/ResendScreen/ResendScreen";
 
-import actions from './store/actions';
-import {RootState} from './store';
-import {withTracker} from './components/withTrackerHOC';
+import actions from "./store/actions";
+import { RootState } from "./store";
+import { withTracker } from "./components/withTrackerHOC";
 
 import {
   APP_STATUS_AUTH_REQUIRED,
@@ -26,13 +26,11 @@ import {
   APP_STATUS_ERROR,
   APP_STATUS_FILLING_PROFILE,
   APP_STATUS_READY,
-  Role,
-} from './core/profile';
+} from "./core/profile";
 
-import './App.css';
-import {Router} from './screens/Router';
-import {JoinScreen} from "./screens/JoinScreen/JoinScreen";
-import {BACKEND_ADDR} from "./config";
+import "./App.css";
+import { Router } from "./screens/Router";
+import { JoinScreen } from "./screens/JoinScreen/JoinScreen";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -41,35 +39,33 @@ const App = () => {
   }, [dispatch]);
 
   const appStatus = useSelector((state: RootState) => state.profile.status);
-  // const role = useSelector((state: RootState) => state.auth.access?.role);
-  const role = useSelector((state: RootState) => state.profile.role);
 
   switch (appStatus) {
     case APP_STATUS_AUTH_REQUIRED:
       return (
-          <Switch>
-            <Route
-                path="/login/"
-                exact={true}
-                component={withTracker(LoginScreen)}
-            />
-            <Route
-                path="/resend/"
-                exact={true}
-                component={withTracker(ResendScreen)}
-            />
-            <Route
-                path="/login/google/done/"
-                exact={true}
-                render={() => <GoogleAuthDoneScreen method={'login'} />}
-            />
-            <Route
-                path="/signup/confirm/"
-                exact={true}
-                render={() => <EmailConfirmScreen />}
-            />
-            <Redirect to={'/login/'} />
-          </Switch>
+        <Switch>
+          <Route
+            path="/login/"
+            exact={true}
+            component={withTracker(LoginScreen)}
+          />
+          <Route
+            path="/resend/"
+            exact={true}
+            component={withTracker(ResendScreen)}
+          />
+          <Route
+            path="/login/google/done/"
+            exact={true}
+            render={() => <GoogleAuthDoneScreen method={"login"} />}
+          />
+          <Route
+            path="/signup/confirm/"
+            exact={true}
+            render={() => <EmailConfirmScreen />}
+          />
+          <Redirect to={"/login/"} />
+        </Switch>
       );
 
     case APP_STATUS_FILLING_PROFILE:

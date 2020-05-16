@@ -7,7 +7,6 @@
  */
 
 export type ProfileStatus =  "SPLASH" | "AUTH_REQUIRED" | "FILLING_PROFILE" | "CHOOSING_PLAN" | "READY" | "ERROR";
-export type Role = "ISSUER" | "SUPPLIER" | "INVESTOR";
 
 export interface Profile {
     id?: string,
@@ -19,7 +18,6 @@ export interface Profile {
     industry: string,
     plan?: string,
     avatarURL?: string,
-    role?: Role,
 }
 
 export const APP_STATUS_SPLASH = "SPLASH";

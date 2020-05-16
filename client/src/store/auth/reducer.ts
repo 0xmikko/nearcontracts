@@ -9,12 +9,10 @@
 import jwtDecode from 'jwt-decode';
 import * as auth from './';
 import {STATUS} from "../../utils/status";
-import { Role } from '../../core/profile';
 
 interface TokenDTO {
   token: string;
   user_id: string;
-  role: Role;
   exp: number;
 }
 
