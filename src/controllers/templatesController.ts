@@ -58,7 +58,7 @@ export class TemplatesController {
 
       this._service
           .list(req.user.user_id)
-          .then((result) => res.json(result))
+          .then((result) => { console.log(result); res.json(result); } )
           .catch((e) => res.status(400).send(e));
     };
   }

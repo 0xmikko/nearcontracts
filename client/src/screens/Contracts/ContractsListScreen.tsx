@@ -48,17 +48,24 @@ export const ContractsListScreen: React.FC = () => {
 
   const onSelect = (id: string) => history.push(`/contracts/${id}`);
 
+  const hash = history.location.hash;
+
+  const onFilter = (filter: string) => {
+    history.push('/contracts#' + filter);
+  };
+
   const rightToolbar = (
-    <ToolbarButton
-      title={"+ Contract"}
-      onClick={() => history.push("/contracts/new/edit")}
-    />
+      <ButtonGroup className="flex-fill m-0" >
+        <Button variant={'outline-primary'} size={'sm'} active={hash === ''} onClick={() => onFilter("")}>All</Button>
+        <Button variant={'outline-primary'} size={'sm'} active={hash === '#incoming'} onClick={() => onFilter("incoming")}>Incoming</Button>
+        <Button variant={'outline-primary'} size={'sm'} active={hash === '#outcoming'} onClick={() => onFilter("outcoming")}>Outcoming</Button>
+      </ButtonGroup>
   );
 
   return (
     <div className="content content-fixed">
       <PageHeader
-        title={"Contracts"}
+        title={"My contracts"}
         breadcrumbs={breadcrumbs}
         rightPanel={rightToolbar}
       />
