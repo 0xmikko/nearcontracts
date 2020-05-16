@@ -34,7 +34,15 @@ export class TemplatesService implements TemplatesServiceI {
     return this._repository.findOne(id);
   }
 
-  update(id: string, dto: TemplateDTO): Promise<void> {
-    return Promise.resolve(undefined);
+  async update(userId: string, dto: TemplateDTO): Promise<Template | undefined> {
+    const template = await this._repository.findOne(dto.id);
+    if (template===undefined) {
+      throw 'Template not found'
+    }
+    template.name = dto.name;
+    template.content = dto.content;
+    template.isPublic = dto.isPublic
+
+    return this._repository.upsert(template);
   }
 }

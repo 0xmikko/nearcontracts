@@ -21,6 +21,7 @@ import { STATUS } from "../../utils/status";
 import { Loading } from "../../components/Loading";
 import { getDetailsItem } from "../../store/dataloader";
 import { DataScreen } from "../../components/DataLoader/DataScreen";
+import {Button} from "react-bootstrap";
 
 interface MatchParams {
   id: string;
@@ -39,7 +40,7 @@ export const TemplateDetailsScreen: React.FC<TemplateDetailsScreenProps> = ({
 
   useEffect(() => {
     dispatch(actions.templates.getDetails(id));
-  }, [dispatch, id]);
+  }, [id]);
 
   const dataItem = useSelector((state: RootState) =>
     getDetailsItem(state.templates.Details, id)
@@ -58,9 +59,20 @@ export const TemplateDetailsScreen: React.FC<TemplateDetailsScreenProps> = ({
     },
   ];
 
+  const rightToolbar = (
+      <div className="d-none d-md-block">
+        <Button
+            className="btn-sm pd-x-15 btn-brand-01 btn-uppercase"
+            onClick={() => history.push(`/templates/${id}/edit/`)}
+        >
+          Edit
+        </Button>
+      </div>
+  );
+
   return (
     <div className="content content-fixed">
-      <PageHeader title={data.name} breadcrumbs={breadcrumbs} />
+      <PageHeader title={data.name} breadcrumbs={breadcrumbs} rightPanel={rightToolbar} />
       <DataScreen data={data} status={status} component={DetailsView} />
     </div>
   );

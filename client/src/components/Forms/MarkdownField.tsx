@@ -1,10 +1,8 @@
 import React, { Component, useState } from "react";
-import { connect } from "react-redux";
-import { Form, Col, FormLabel, Row } from "react-bootstrap";
-import { Typeahead } from "react-bootstrap-typeahead";
-import { ErrorMessage, Field, FieldProps } from "formik";
+import { Col, FormLabel, Row } from "react-bootstrap";
+import { Field, FieldProps } from "formik";
 import AceEditor from "react-ace";
-import ReactMarkdown from "react-markdown";
+import {ContractMarkdown} from "../ContractMarkdown/ContractMarkdown";
 
 interface MarkdownFieldProps {
   name: string;
@@ -46,7 +44,7 @@ export const MarkdownField: React.FC<MarkdownFieldProps> = ({
             />
           </Col>
           <Col sm={6} lg={6} xl={6} md={6}>
-            <ReactMarkdown source={text} />
+            <ContractMarkdown source={text} />
           </Col>
         </Row>
       )}

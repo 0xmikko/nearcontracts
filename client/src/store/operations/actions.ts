@@ -3,8 +3,9 @@ import {namespace, OPERATION_PREFIX} from "./index";
 import {DETAIL_SUCCESS, LIST_SUCCESS} from "../dataloader";
 import {ThunkAction} from "redux-thunk";
 import {RootState} from "../index";
+import {STATUS} from "../../utils/status";
 
-export const updateStatus = (opHash: string, status: string, error?: string) => ({
+export const updateStatus = (opHash: string, status: STATUS, error?: string) => ({
   type: OPERATION_PREFIX + DETAIL_SUCCESS,
   payload: {
     id: opHash,

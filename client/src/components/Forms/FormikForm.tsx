@@ -52,7 +52,7 @@ export function FormikForm<T, S>({
   function getComponent(
     name: string,
     f: FieldI,
-    { setFieldValue }: FormikHelpers<T>
+    { setFieldValue, values }: FormikProps<T>
   ): React.ReactElement {
     switch (f.type) {
       default:
@@ -82,31 +82,29 @@ export function FormikForm<T, S>({
           />
         );
       case "markdown":
+        const vvalues = (values as unknown) as Record<string, string>;
+
         return (
           <MarkdownField
             label={f.label}
             name={name}
             onChange={(value: string) => {
-                if (f.onChange) {
-                    f.onChange(value);
-                }
-                setFieldValue(name, value);
+              if (f.onChange) {
+                f.onChange(value);
+              }
+              setFieldValue(name, value);
             }}
+            value={vvalues[name]}
           />
         );
     }
   }
 
-  const fieldsRendered = (props: FormikHelpers<T>) =>
+  const fieldsRendered = (props: FormikProps<T>) =>
     Object.entries(fields).map((e) => {
       const name = e[0];
       const f = e[1] as FieldI;
-
-      const components: Record<string, FieldComponent> = {
-        input: "input",
-        textarea: "textarea",
-      };
-
+      console.log(props);
       return (
         <>
           <FormLabel>{f?.label}</FormLabel>
@@ -124,7 +122,7 @@ export function FormikForm<T, S>({
         initialValues={initialValues}
         onSubmit={onSubmit}
       >
-        {(props: FormikHelpers<T>) => (
+        {(props: FormikProps<T>) => (
           <Form className="form" onBlur={onChange}>
             {fieldsRendered(props)}
             <Button

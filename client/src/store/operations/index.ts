@@ -1,6 +1,8 @@
+import {STATUS} from "../../utils/status";
+
 export interface Operation {
     id: string,
-    status: string,
+    status: STATUS,
     error?: string,
 }
 
