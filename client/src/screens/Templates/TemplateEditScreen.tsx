@@ -82,6 +82,8 @@ export const TemplateEditScreen: React.FC<TemplateEditScreenProps> = ({
   ];
 
   const onSubmit = (values: Template) => {
+
+    console.log(values);
     setIsSubmitted(true);
     const newHash = Date.now().toString();
     setHash(newHash);

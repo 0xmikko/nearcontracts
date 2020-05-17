@@ -12,9 +12,18 @@ export class Milestone {
     }
   }
 
+  public toMarkdown(): string {
+    return `> #### ${this.name}
+> Amount: ${this.payment}  
+> Deadline: ${this.deadline}  
+> Dispute share: ${this.disputeShare}  
+> Description:  
+> ${this.description}  `
+  }
+
   private parseLine(str: string) {
     const items = str.split(" ");
-    console.log("MMS---", items)
+    console.log("MMS---", items);
     if (items.length < 3) return;
     const name = items[1];
     const value = str.substr(str.indexOf(name) + name.length).trim();
@@ -68,14 +77,14 @@ export function getMilestones(contractText: string): Milestone[] {
   for (let str of lines) {
     if (isMilestone) {
       if (str.startsWith("$")) {
-        buffer += str + '\n';
+        buffer += str + "\n";
       } else {
         result.push(new Milestone(buffer));
         isMilestone = false;
       }
     } else {
       if (str.startsWith("$")) {
-        buffer = str + '\n';
+        buffer = str + "\n";
         isMilestone = true;
       }
     }
@@ -83,6 +92,40 @@ export function getMilestones(contractText: string): Milestone[] {
   }
 
   if (buffer.length > 0) result.push(new Milestone(buffer));
+
+  return result;
+}
+
+export function convertMarkdown(contractText: string): string {
+  const lines: string[] = contractText.split("\n");
+  let result: string = "";
+  let isMilestone = false;
+  let buffer = "";
+  for (let str of lines) {
+    if (isMilestone) {
+      if (str.startsWith("$")) {
+        buffer += str + "\n";
+      } else {
+        const newMS = new Milestone(buffer);
+        result += newMS.toMarkdown() + '\n  \n';
+        isMilestone = false;
+      }
+    } else {
+      if (str.startsWith("$")) {
+        buffer = str + "\n";
+        isMilestone = true;
+      } else {
+        result += str + '\n';
+      }
+    }
+    console.log("MMS " + buffer);
+  }
+
+  if (buffer.length > 0) {
+    const newMS = new Milestone(buffer);
+    result += newMS.toMarkdown() + '\n';
+  }
+
 
   return result;
 }

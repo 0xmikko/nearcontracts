@@ -1,5 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import {convertMarkdown} from "../../core/milestone";
 
 export interface ContractMarkdownProps {
   source: string;
@@ -7,6 +8,6 @@ export interface ContractMarkdownProps {
 
 export const ContractMarkdown: React.FC<ContractMarkdownProps> = ({ source }) => {
 
-
-    return <ReactMarkdown source={source} />
+    const contractEmbeddedSource = convertMarkdown(source);
+    return <ReactMarkdown source={contractEmbeddedSource} />
 };

@@ -45,6 +45,7 @@ export class ContractsController {
           })
           .catch(() => res.status(400).send());
       } catch (e) {
+        console.log(e)
         res.status(400).send(e);
       }
     };
@@ -109,6 +110,7 @@ export class ContractsController {
           })
           .catch(() => res.status(400).send());
       } catch (e) {
+        console.log(e)
         res.status(400).send(e);
       }
     };
