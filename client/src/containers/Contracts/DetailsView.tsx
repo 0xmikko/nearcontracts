@@ -16,6 +16,7 @@ import { useHistory } from "react-router";
 import { InfoWidget } from "./InfoWidget";
 import TabsBar from "../../components/PageHeader/TabsBar";
 import { TabPane } from "../../components/PageHeader/TabPane";
+import {MilestonesWidget} from "../Milestones/MilestonesWidget";
 
 interface ContractDetailsProps {
   data: Contract;
@@ -33,7 +34,9 @@ export const DetailsView: React.FC<ContractDetailsProps> = ({
       <TabPane hash={'#info'}>
         <InfoWidget data={data} />
       </TabPane>
-      <TabPane hash={'#budget'}>Budget</TabPane>
+      <TabPane hash={'#milestones'}>
+          <MilestonesWidget contractText={data.content} />
+      </TabPane>
     </Container>
   );
 };
