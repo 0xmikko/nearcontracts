@@ -1,4 +1,4 @@
-const CONTRACT_NAME = process.env.CONTRACT_NAME ||'client';
+const CONTRACT_NAME = 'nrc_test';
 
 function getConfig(env) {
     switch (env) {

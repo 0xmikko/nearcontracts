@@ -1,9 +1,22 @@
-import { context, logging, storage } from "near-sdk-as";
-// available class: context, storage, logging, base58, base64, 
+import { context, logging, storage, PersistentMap } from "near-sdk-as";
+// available class: context, storage, logging, base58, base64,
 // PersistentMap, PersistentVector, PersistentDeque, PersistentTopN, ContractPromise, math
 import { TextMessage } from "./model";
 
+const contracts = new PersistentMap<string, u64>("a:")
+const agreements = new PersistentMap<string, TextMessage>("b:")
+
 const DEFAULT_MESSAGE = "Hello"
+
+export function newAgreement() : string {
+  const agreementNo = contracts.contains(context.sender) ? contracts.getSome(context.sender) : 0;
+  const tm = new TextMessage();
+  tm.text = "Checking - cheking " + context.sender;
+  const aName = context.sender + agreementNo.toString();
+  agreements.set(aName, tm);
+  contracts.set(context.sender, agreementNo+1);
+  return aName;
+}
 
 export function welcome(account_id: string): TextMessage {
   logging.log("simple welcome test");
