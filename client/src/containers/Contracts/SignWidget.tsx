@@ -8,7 +8,7 @@
 
 import React from "react";
 import { Contract } from "../../core/contract";
-import { Card, Col, Row, Table } from "react-bootstrap";
+import {Button, Card, Col, Row, Table} from "react-bootstrap";
 import { ContractMarkdown } from "../../components/ContractMarkdown/ContractMarkdown";
 import {toHumanDate} from "../../utils/formaters";
 
@@ -16,7 +16,7 @@ interface InfoWidgetProps {
   data: Contract;
 }
 
-export const InfoWidget: React.FC<InfoWidgetProps> = ({ data }) => {
+export const SignWidget: React.FC<InfoWidgetProps> = ({ data }) => {
   return (
     <Row style={{ marginTop: "20px" }}>
       <Col lg={8} md={8} xs={12}>
@@ -25,16 +25,12 @@ export const InfoWidget: React.FC<InfoWidgetProps> = ({ data }) => {
       <Col lg={4} md={4} xs={12}>
         <Card>
           <Card.Header className="card-header" style={{backgroundColor: '#F0F0F0'}}>
-            <h6 className="mg-b-0" >Info</h6>
+            <h6 className="mg-b-0" >Sign Info</h6>
           </Card.Header>
           <Card.Body className="pd-20">
-            <div className="table-responsive">
-              Date: {toHumanDate(data.date)}
-              <br />
-              Partner: {data.partnerID}
-              <br />
-              Status: {data.status}
-            </div>
+            Pressing "Deploy & Sign" Button I agree ng this contact I undersood all<br /><br />
+
+            <Button>Sign</Button>
           </Card.Body>
         </Card>
       </Col>

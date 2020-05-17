@@ -14,9 +14,6 @@ import {
 } from "../../components/Forms/FormikForm";
 import { Contract } from "../../core/contract";
 import { Loading } from "../../components/Loading";
-import ReactMarkdown from "react-markdown";
-import { Col, Row } from "react-bootstrap";
-import AceEditor from "react-ace";
 
 const formSchema = yup.object({
   name: yup.string().required().min(3),

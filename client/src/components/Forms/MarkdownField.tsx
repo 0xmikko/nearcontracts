@@ -1,8 +1,5 @@
 import React, { Component, useState } from "react";
-import { Col, FormLabel, Row, Container } from "react-bootstrap";
 import { Field, FieldProps } from "formik";
-import AceEditor from "react-ace";
-import { ContractMarkdown } from "../ContractMarkdown/ContractMarkdown";
 
 import MarkdownIt from 'markdown-it'
 import MdEditor from 'react-markdown-editor-lite'

@@ -7,48 +7,53 @@
  */
 
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Table, Container, Row, Col, Card } from "react-bootstrap";
 import { Contract } from "../../core/contract";
 import { DataScreenComponentProps } from "../../components/DataLoader/DataScreen";
+import {toHumanDate} from "../../utils/formaters";
 
 export const ContractsList: React.FC<DataScreenComponentProps<Contract[]>> = ({
   data,
   onSelect,
 }) => {
-
   const onPressed = (id: string) => {
     if (onSelect) {
       onSelect(id);
     }
-  }
+  };
 
   const renderLine = (h: Contract) => (
     <tr onClick={() => onPressed(h.id)} key={h.id}>
-      <td className="tx-color-03 text-left tx-normal">{h.name}</td>
+      <td className="tx-medium text-left tx-normal">{h.name}</td>
+      <td className="tx-medium text-left">{toHumanDate(h.date)}</td>
       <td className="tx-medium text-left">{h.partnerID}</td>
-      <td className="tx-medium text-left">{h.date}</td>
+      <td className="tx-medium text-left">{h.status}</td>
     </tr>
   );
   // tx-teal tx-pink
   const renderTableContent = data.map((h) => renderLine(h));
 
   return (
-    <div className="card card-dashboard-table mg-t-20">
-      {/*<!-- card-body -->}*/}
-      <div className="table-responsive">
-        <Table className="table-dashboard mg-b-0" hover={true}>
-          <thead>
-            <tr>
-              <th style={{ width: "25%" }}>Name</th>
+    <Container style={{ padding: 0 }}>
+      <Row>
+        <Col lg={12} md={12} xs={12}>
+          <Card className="card-dashboard-table mg-t-20">
+            {/*<!-- card-body -->}*/}
+              <Table className="table-dashboard mg-b-0" hover={true}>
+                <thead>
+                  <tr>
+                    <th style={{ width: "25%" }}>Name</th>
 
-              <th>Description</th>
-              <th>Signed</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>{renderTableContent}</tbody>
-        </Table>
-      </div>
-    </div>
+                    <th>Date</th>
+                    <th>Partner</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>{renderTableContent}</tbody>
+              </Table>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };

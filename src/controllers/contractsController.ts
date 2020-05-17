@@ -2,7 +2,7 @@ import {
   ContractCreateDTO,
   contractCreateDTOSchema,
   ContractsServiceI,
-  ContractUpdateDTO,
+  ContractUpdateDTO, contractUpdateDTOSchema,
 } from "../core/contract";
 import { Response } from "express";
 import { RequestWithUser } from "./types";
@@ -14,10 +14,12 @@ import Ajv, { ValidateFunction } from "ajv";
 export class ContractsController {
   private _service: ContractsServiceI;
   private readonly _createDTOValidate: ValidateFunction;
+  private readonly _updateDTOValidate: ValidateFunction;
 
   constructor(@inject(TYPES.ContractsService) service: ContractsServiceI) {
     this._service = service;
     this._createDTOValidate = new Ajv().compile(contractCreateDTOSchema);
+    this._updateDTOValidate = new Ajv().compile(contractUpdateDTOSchema);
   }
 
   create() {
@@ -95,7 +97,9 @@ export class ContractsController {
         content: req.body.content,
       };
 
-      if (!this._createDTOValidate(dto)) {
+      console.log(dto)
+
+      if (! this._updateDTOValidate(dto)) {
         return res.status(400).send("Incorrect request");
       }
 

@@ -58,6 +58,25 @@ export const contractCreateDTOSchema = {
   },
 };
 
+export const contractUpdateDTOSchema = {
+  type: "object",
+  required: ["id", "name", "date", "content"],
+  properties: {
+    id: {
+      type: "string",
+    },
+    name: {
+      type: "string",
+    },
+    date: {
+      type: "string",
+    },
+    content: {
+      type: "string",
+    },
+  },
+};
+
 export interface ContractsRepositoryI extends BasicRepositoryI<Contract> {}
 
 export interface ContractsServiceI {
