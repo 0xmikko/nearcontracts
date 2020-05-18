@@ -21,8 +21,8 @@ export class Contract {
   @Column()
   date: Date;
 
-  @Column({ default: "Draft" })
-  status: ContractStage;
+  @Column({ default: "" })
+  address: string;
 
   @Column({ default: "" })
   content: string;
@@ -35,6 +35,12 @@ export class Contract {
 
   @ManyToOne((type) => Template, (template) => template.contracts)
   template: Template;
+
+  @Column({ default: false })
+  isDeployed: boolean;
+
+  @Column({default: true})
+  ownerIsSupplier: boolean;
 }
 
 export interface ContractCreateDTO {
@@ -46,6 +52,10 @@ export interface ContractUpdateDTO {
   name: string;
   date: Date;
   content: string;
+  partnerID: string;
+  address: string;
+  isDeployed: boolean;
+  ownerIsSupplier: boolean
 }
 
 export const contractCreateDTOSchema = {
@@ -60,7 +70,7 @@ export const contractCreateDTOSchema = {
 
 export const contractUpdateDTOSchema = {
   type: "object",
-  required: ["id", "name", "date", "content"],
+  required: ["id", "name", "date", "content", "ownerIsSupplier"],
   properties: {
     id: {
       type: "string",
@@ -73,6 +83,15 @@ export const contractUpdateDTOSchema = {
     },
     content: {
       type: "string",
+    },
+    adderss: {
+      type: "string",
+    },
+    isDeployed: {
+      type: "boolean",
+    },
+    ownerIsSupplier: {
+      type: "boolean",
     },
   },
 };

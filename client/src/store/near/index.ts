@@ -67,22 +67,13 @@ export class NearUtil {
         getNearConfig(process.env.NODE_ENV || "development").contractName,
         {
           // View methods are read only. They don't modify the state, but usually return some value.
-          viewMethods: ["welcome"],
+          viewMethods: ["getAgreement"],
           // Change methods can modify the state. But you don't receive the returned value when called.
-          changeMethods: ["setGreeting", "newAgreement"],
+          changeMethods: ["createNewAgreement"],
         }
       );
       resolve(NearUtil.contract);
     });
   }
 
-  public static newAgreement(): Promise<string> {
-    return new Promise<string>(async (resolve) => {
-      const contract = await NearUtil.getContract();
-      // @ts-ignore
-      const result = await contract.newAgreement();
-      console.log("RSSS", result);
-      resolve(result);
-    });
-  }
 }

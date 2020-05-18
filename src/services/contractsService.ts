@@ -54,6 +54,11 @@ export class ContractsService implements ContractsServiceI {
     }
     contract.name = dto.name;
     contract.content = dto.content;
+    contract.isDeployed = dto.isDeployed;
+    contract.address = dto.address;
+    contract.ownerIsSupplier = dto.ownerIsSupplier;
+    contract.partnerID = dto.partnerID;
+    contract.date = dto.date
 
     return this._repository.upsert(contract);
   }

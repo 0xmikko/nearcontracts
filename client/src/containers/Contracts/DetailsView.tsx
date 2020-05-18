@@ -9,7 +9,7 @@
 import React from "react";
 import {Button, Col, Container} from "react-bootstrap";
 
-import { Contract } from "../../core/contract";
+import {Contract, ContractManager} from "../../core/contract";
 // import {TotalBar} from '../Bonds/TotalBar';
 
 import { useHistory } from "react-router";
@@ -28,6 +28,8 @@ export const DetailsView: React.FC<ContractDetailsProps> = ({
   const history = useHistory();
   const tabs: string[] = ['Info', 'Milestones', 'Reviews'];
 
+  const contractManager = new ContractManager(data);
+
   return (
     <Container className="pd-x-0 pd-lg-x-10 pd-xl-x-0 m-t-20-f pd-t-30-f">
       <TabsBar tabs={tabs} selected={'info'} />
@@ -35,7 +37,7 @@ export const DetailsView: React.FC<ContractDetailsProps> = ({
         <InfoWidget data={data} />
       </TabPane>
       <TabPane hash={'#milestones'}>
-          <MilestonesWidget contractText={data.content} />
+          <MilestonesWidget data={contractManager.milestones} />
       </TabPane>
     </Container>
   );

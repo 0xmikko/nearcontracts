@@ -22,6 +22,7 @@ import { Loading } from "../../components/Loading";
 import { getDetailsItem } from "../../store/dataloader";
 import { DataScreen } from "../../components/DataLoader/DataScreen";
 import { Button } from "react-bootstrap";
+import {ContractManager} from "../../core/contract";
 
 interface MatchParams {
   id: string;
@@ -59,7 +60,9 @@ export const ContractDetailsScreen: React.FC<ContractDetailsScreenProps> = ({
     },
   ];
 
-  const rightToolbar = data.status === 'Draft' ? (
+  const contractManager = new ContractManager(data);
+
+  const rightToolbar = contractManager.status === 'Draft' ? (
     <div className="d-none d-md-block">
       <Button
         className="btn-sm pd-x-15 btn-brand-01 btn-uppercase"

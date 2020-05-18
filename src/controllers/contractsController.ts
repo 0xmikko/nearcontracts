@@ -95,6 +95,10 @@ export class ContractsController {
         name: req.body.name,
         date: req.body.date,
         content: req.body.content,
+        address: req.body.address,
+        isDeployed: req.body.isDeployed,
+        partnerID: req.body.partnerID,
+        ownerIsSupplier: req.body.ownerIsSupplier,
       };
 
       console.log(dto)

@@ -68,9 +68,8 @@ export class Milestone {
   }
 }
 
-export function getMilestones(contractText: string): Milestone[] {
+export function extractMilestones(contractText: string): Milestone[] {
   const lines: string[] = contractText.split("\n");
-  console.log("MMS", lines.length);
   const result: Milestone[] = [];
   let isMilestone = false;
   let buffer = "";

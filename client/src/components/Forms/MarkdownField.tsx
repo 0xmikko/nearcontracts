@@ -7,17 +7,8 @@ import MdEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css';
 import {convertMarkdown} from "../../core/milestone";
 
-// Register plugins if required
-// MdEditor.use(YOUR_PLUGINS_HERE);
-
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */);
-
-// Finish!
-// function handleEditorChange({html, text}) {
-//   console.log('handleEditorChange', html, text)
-// }
-
 
 interface MarkdownFieldProps {
   name: string;
@@ -57,25 +48,6 @@ export const MarkdownField: React.FC<MarkdownFieldProps> = ({
               onChange={update}
               name={name}
           />
-
-        // <Container fluid>
-        //   <Row>
-        //     <Col lg={6} xl={6} md={6}>
-        //       <AceEditor
-        //         mode="markdown"
-        //         theme="github"
-        //         onChange={update}
-        //         value={text}
-        //         name={name}
-        //         highlightActiveLine={true}
-        //         // editorProps={{ $blockScrolling: true }}
-        //       />
-        //     </Col>
-        //     <Col sm={6} lg={6} xl={6} md={6}>
-        //       <ContractMarkdown source={text} />
-        //     </Col>
-        //   </Row>
-        // </Container>
       )}
     </Field>
   );

@@ -17,6 +17,7 @@ import { InfoWidget } from "./InfoWidget";
 import TabsBar from "../../components/PageHeader/TabsBar";
 import { TabPane } from "../../components/PageHeader/TabPane";
 import {MilestonesWidget} from "../Milestones/MilestonesWidget";
+import {extractMilestones} from "../../core/milestone";
 
 interface TemplateDetailsProps {
   data: Template;
@@ -35,7 +36,7 @@ export const DetailsView: React.FC<TemplateDetailsProps> = ({
         <InfoWidget data={data} />
       </TabPane>
         <TabPane hash={'#milestones'}>
-            <MilestonesWidget contractText={data.content} />
+            <MilestonesWidget data={extractMilestones(data.content)} />
         </TabPane>
     </Container>
   );

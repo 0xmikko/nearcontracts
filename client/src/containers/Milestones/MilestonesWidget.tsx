@@ -1,9 +1,9 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { getMilestones, Milestone } from "../../core/milestone";
+import { Milestone } from "../../core/milestone";
 
 interface MilestonesWidgetProps {
-  contractText: string;
+  data: Milestone[];
 }
 
 interface MilestonesItemProps {
@@ -34,13 +34,12 @@ const MilestoneItem: React.FC<MilestonesItemProps> = ({ data }) => {
 };
 
 export const MilestonesWidget: React.FC<MilestonesWidgetProps> = ({
-  contractText,
+  data
 }) => {
-  const milestones = getMilestones(contractText);
 
   const milestoneRendered =
-    milestones.length === 0
+    data.length === 0
       ? "No milestones yet"
-      : milestones.map((m) => <MilestoneItem data={m} />);
+      : data.map((m) => <MilestoneItem data={m} />);
   return <div>{milestoneRendered} </div>;
 };
