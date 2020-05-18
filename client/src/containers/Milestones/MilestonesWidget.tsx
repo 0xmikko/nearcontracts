@@ -24,8 +24,6 @@ const MilestoneItem: React.FC<MilestonesItemProps> = ({ data }) => {
         Payment: <br />
         {data.payment}
         <br />
-        Deadline: {data.deadline}
-        <br />
         DisputShare: {data.disputeShare}
         <br />
       </Card.Body>

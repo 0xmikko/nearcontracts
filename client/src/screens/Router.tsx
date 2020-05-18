@@ -10,7 +10,6 @@ import { ContractsListScreen } from "./Contracts/ContractsListScreen";
 import { ContractEditScreen } from "./Contracts/ContractEditScreen";
 import { ContractDetailsScreen } from "./Contracts/ContractDetailsScreen";
 import {ContractNewScreen} from "./Contracts/ContractNewScreen";
-import {ContractSignScreen} from "./Contracts/ContractSignScreen";
 
 export const Router: React.FC = () => {
   return (
@@ -53,11 +52,6 @@ export const Router: React.FC = () => {
           component={withTracker(ContractEditScreen)}
         />
 
-        <PrivateRoute
-            exact
-            path="/contracts/:id/sign"
-            component={withTracker(ContractSignScreen)}
-        />
         <Route path={"*"}>
           <Redirect to={"/contracts"} />
         </Route>

@@ -1,9 +1,14 @@
+import CryptoJS from "crypto-js";
+
 export class Milestone {
-  private _name: string | undefined;
-  private _description: string | undefined; // Things to be done
-  private _payment: number | undefined;
-  private _deadline: number | undefined;
-  private _disputeShare: number | undefined;
+  private _name: string = "";
+  private _description: string = ""; // Things to be done
+  private _payment: number = 0;
+  private _disputeShare: number = 0;
+  private _submitted: boolean = false;
+  private _submittedDate: number | undefined;
+  private _paid: boolean = false;
+  private _paidDate: number | undefined;
 
   constructor(text: string) {
     const lines: string[] = text.split("\n");
@@ -15,10 +20,11 @@ export class Milestone {
   public toMarkdown(): string {
     return `> #### ${this.name}
 > Amount: ${this.payment}  
-> Deadline: ${this.deadline}  
 > Dispute share: ${this.disputeShare}  
 > Description:  
-> ${this.description}  `
+> ${this.description}  
+> Hash: ${this.hash}  `;
+
   }
 
   private parseLine(str: string) {
@@ -38,33 +44,64 @@ export class Milestone {
       case "amount:":
         this._payment = parseFloat(value);
         return;
-      case "deadline:":
-        this._deadline = Date.parse(value);
-        return;
-      case "disputShare:":
+      case "disputshare:":
         this._disputeShare = parseFloat(value);
         return;
     }
   }
 
-  get name(): string | undefined {
+  get name(): string {
     return this._name;
   }
 
-  get description(): string | undefined {
+  get description(): string {
     return this._description;
   }
 
-  get payment(): number | undefined {
+  get payment(): number {
     return this._payment;
   }
 
-  get deadline(): number | undefined {
-    return this._deadline;
+  get disputeShare(): number {
+    return this._disputeShare;
   }
 
-  get disputeShare(): number | undefined {
-    return this._disputeShare;
+  get hash(): string {
+    return CryptoJS.SHA256(
+      this.name + this.description + this.payment + this.disputeShare
+    ).toString();
+  }
+
+  get submitted(): boolean {
+    return this._submitted;
+  }
+
+  set submitted(value: boolean) {
+    this._submitted = value;
+  }
+
+  get submittedDate(): number | undefined {
+    return this._submittedDate;
+  }
+
+  set submittedDate(value: number | undefined) {
+    this._submittedDate = value;
+  }
+
+  get paid(): boolean {
+    return this._paid;
+  }
+
+  set paid(value: boolean) {
+    this._paid = value;
+  }
+
+  get paidDate(): number | undefined {
+    return this._paidDate;
+  }
+
+  set paidDate(value: number | undefined) {
+    this._paidDate = value;
   }
 }
 
@@ -80,6 +117,7 @@ export function extractMilestones(contractText: string): Milestone[] {
       } else {
         result.push(new Milestone(buffer));
         isMilestone = false;
+        buffer = '';
       }
     } else {
       if (str.startsWith("$")) {
@@ -90,7 +128,7 @@ export function extractMilestones(contractText: string): Milestone[] {
     console.log("MMS " + buffer);
   }
 
-  if (buffer.length > 0) result.push(new Milestone(buffer));
+  if (buffer.length > 0 && isMilestone) result.push(new Milestone(buffer));
 
   return result;
 }
@@ -106,15 +144,16 @@ export function convertMarkdown(contractText: string): string {
         buffer += str + "\n";
       } else {
         const newMS = new Milestone(buffer);
-        result += newMS.toMarkdown() + '\n  \n';
+        result += newMS.toMarkdown() + "\n  \n";
         isMilestone = false;
+        buffer = '';
       }
     } else {
       if (str.startsWith("$")) {
         buffer = str + "\n";
         isMilestone = true;
       } else {
-        result += str + '\n';
+        result += str + "\n";
       }
     }
     console.log("MMS " + buffer);
@@ -122,9 +161,8 @@ export function convertMarkdown(contractText: string): string {
 
   if (buffer.length > 0) {
     const newMS = new Milestone(buffer);
-    result += newMS.toMarkdown() + '\n';
+    result += newMS.toMarkdown() + "\n";
   }
-
 
   return result;
 }

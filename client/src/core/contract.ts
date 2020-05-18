@@ -1,14 +1,15 @@
 import { Template } from "../../../src/core/template";
-import {convertMarkdown, extractMilestones, Milestone} from "./milestone";
-import {Agreement} from "./agreement";
+import { convertMarkdown, extractMilestones, Milestone } from "./milestone";
+import { Agreement } from "./agreement";
+
 
 export type ContractStage =
-    | "Draft"
-    | 'Deployed'
-    | 'Signed'
-    | "Finished"
-    | "Cancelled"
-    | "Error";
+  | "Draft"
+  | "Deployed"
+  | "Signed"
+  | "Finished"
+  | "Cancelled"
+  | "Error";
 
 export interface Contract {
   id: string;
@@ -44,9 +45,12 @@ export class ContractManager {
     this._milestones = this.extractMilestonesFromText();
 
     if (this._contract.isDeployed) {
-        this._status =  this._contract.agreement === undefined ? 'Error' : this._contract.agreement.status;
+      this._status =
+        this._contract.agreement === undefined
+          ? "Error"
+          : this._contract.agreement.status;
     } else {
-      this._status = 'Draft';
+      this._status = "Draft";
     }
   }
 
@@ -58,8 +62,39 @@ export class ContractManager {
     return this._status;
   }
 
+  get signedByOwner() : string {
+    return this._contract.agreement === undefined ? "undefined" : this._contract.agreement.signedByOwner ? 'yes' : 'no';
+  }
+
+  get signedByPartner() : string {
+    return this._contract.agreement === undefined ? "undefined" : this._contract.agreement.signedByPartner ? 'yes' : 'no';
+  }
+
+  public isOwner(accountID: string): boolean {
+    if (this._contract.agreement === undefined) return false;
+    return this._contract.agreement.ownerID === accountID
+  }
+
+  public isPartner(accountID: string): boolean {
+    if (this._contract.agreement === undefined) return false;
+    return this._contract.agreement.partner === accountID
+  }
+
+  public couldBeSignedByMe(accountID: string): boolean {
+    if (this._contract.agreement === undefined) return false;
+    if (this.isOwner(accountID)) {
+      return !this._contract.agreement.signedByOwner;
+    }
+
+    if (this.isPartner(accountID)) {
+      return !this._contract.agreement.signedByPartner;
+    }
+
+    return false;
+  }
+
   private extractMilestonesFromText(): Milestone[] {
-    return  extractMilestones(this._contract.content);
+    return extractMilestones(this._contract.content);
   }
 
   toMarkdown(): string {

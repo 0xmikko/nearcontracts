@@ -1,14 +1,18 @@
 @nearBindgen
 export class Milestone {
-  name: string;
-  description: string; // Things to be done
+  hash: string;
   payment: u64;
-  deadline: u64;
   disputeShare: u64;
   submitted: bool;
   submittedDate: u64;
   paid: bool;
   paidDate: u64;
+
+  constructor(hash: string, payment: u64, disputeShare: u64) {
+    this.hash = hash;
+    this.payment = payment;
+    this.disputeShare = disputeShare;
+  }
 }
 
 @nearBindgen
@@ -28,26 +32,13 @@ export class Agreement {
   constructor(ownerID: string, ownerIsSupplier: bool) {
     this.ownerID = ownerID;
     this.ownerIsSupplier = ownerIsSupplier;
+    this.status = 'Deployed';
+    this.currentMilestone=0;
+    this.signedByOwner = false;
+    this.signedByPartner = false;
+    this.milestones = new Array<Milestone>(0)
   }
 
-  public addMilestone(m: Milestone) : void {
-    if (this.status !== "Deployed") {
-      this.milestones.push(m);
-    }
-  }
-
-  public submitMilestone() :void {
-    this.milestones[this.currentMilestone].submitted = true;
-    // this.milestones[this.currentMilestone].submittedDate = Date.now();
-  }
-
-  public nextMilestone() : void {
-    this.milestones[this.currentMilestone].paid = true;
-    // this.milestones[this.currentMilestone].paidDate = Date.now();
-    if (this.currentMilestone < this.milestones.length - 1) {
-      this.currentMilestone++;
-    }
-  }
 
   public checkIsOwner(id: string) : void{
     if (this.ownerID !== id) throw "Allowed for agreement owner only";

@@ -57,6 +57,10 @@ export const InfoWidget: React.FC<InfoWidgetProps> = ({ data }) => {
     }
   }, [hash, operationStatus]);
 
+  if (accountID === undefined) {
+    return <div>Cant get Account ID</div>
+  }
+
   const onDeploy = () => {
     setIsSubmitted(true);
     const newHash = Date.now().toString();
@@ -66,11 +70,33 @@ export const InfoWidget: React.FC<InfoWidgetProps> = ({ data }) => {
     dispatch(actions.contracts.deployContract(data, newHash));
   };
 
+  const onSign = () => {
+    setIsSubmitted(true);
+    const newHash = Date.now().toString();
+    setHash(newHash);
+
+    if (contractManager.isOwner(accountID)) {
+      dispatch(actions.contracts.signByOwner(data, newHash));
+    }
+
+    if (contractManager.isPartner(accountID)) {
+      dispatch(actions.contracts.signByPartner(data, newHash));
+    }
+    // Emit data
+
+  };
+
   let nextAction;
 
   if (contractManager.status === 'Draft') {
     nextAction =  <Button onClick={onDeploy} disabled={isSubmitted}>
       Deploy
+    </Button>
+  }
+
+  if (contractManager.status === 'Deployed' && contractManager.couldBeSignedByMe(accountID)) {
+    nextAction =  <Button onClick={onSign} disabled={isSubmitted}>
+      Sign
     </Button>
   }
 
@@ -90,7 +116,13 @@ export const InfoWidget: React.FC<InfoWidgetProps> = ({ data }) => {
               <br />
               Partner: {data.partnerID}
               <br />
+              Agreement ID: {data.address}
+              <br />
               Status: {contractManager.status}
+              <br />
+              Signed by owner: { contractManager.signedByOwner }
+              <br />
+              Signed by partner: { contractManager.signedByPartner }
             </div>
 
             {nextAction}
