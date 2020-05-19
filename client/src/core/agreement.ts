@@ -1,5 +1,4 @@
 import {ContractStage} from "./contract";
-import {Milestone} from "./milestone";
 
 export interface Agreement{
     ownerID: string;
@@ -9,5 +8,18 @@ export interface Agreement{
     signedByOwner: boolean;
     signedByPartner: boolean;
     currentMilestone: number;
-    milestones: Milestone[];
+    milestones: AgreementMilestone[];
+}
+
+export interface AgreementMilestone {
+    hash: string;
+    payment: number;
+    disputeShare: number;
+    started: boolean;
+    startedBlock: number;
+    submitted: boolean
+    submittedBlock: number;
+    paid: boolean
+    paidBlock: number;
+
 }

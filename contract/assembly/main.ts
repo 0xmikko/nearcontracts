@@ -6,17 +6,18 @@ import { Agreement, Milestone } from "./model";
 const balances = new PersistentMap<string, u64>("a:");
 const agreementsRegistry = new PersistentMap<string, u64>("b:");
 const agreements = new PersistentMap<string, Agreement>("c:");
+const milestones = new PersistentMap<string, Milestone>("ms:")
 
 // Creates new empty agreement
 // Returns: agreement id
-export function createNewAgreement(ownerIsSupplier: boolean): string {
+export function createNewAgreement(partnerID: string, ownerIsSupplier: boolean): string {
   const agreementNo = agreementsRegistry.contains(context.sender)
     ? agreementsRegistry.getSome(context.sender)
     : 0;
 
   const agreementID = context.sender + agreementNo.toString();
 
-  const agreement = new Agreement(context.sender, ownerIsSupplier);
+  const agreement = new Agreement(context.sender, partnerID, ownerIsSupplier);
 
   agreements.set(agreementID, agreement);
   agreementsRegistry.set(context.sender, agreementNo + 1);
@@ -24,9 +25,22 @@ export function createNewAgreement(ownerIsSupplier: boolean): string {
 }
 
 export function getAgreement(id: string): Agreement {
-  assert(agreements.contains(id), "Agreement with this id doesn't excists");
+  assert(agreements.contains(id), "Agreement with this id doesn't exist");
   return agreements.getSome(id);
 }
+
+
+function getMilestoneIndexByHash(agreement: Agreement, hash: string) : i32 {
+  for (let i : i32 = 0; i < agreement.milestones.length; i++) {
+    if (agreement.milestones[i].hash == hash) {
+      return i;
+    }
+  }
+
+  assert(false, 'Can find milestone index');
+  return 0;
+}
+
 
 export function addNewMilestone(
   id: string,
@@ -42,9 +56,31 @@ export function addNewMilestone(
   agreements.set(id, agreement);
 }
 
-export function submitMilestone(id: string, index: u64): void {
+export function startMilestone(id: string, hash: string) : void {
   const agreement = getAgreement(id);
-  // agreement.checkIsSupplier(context.sender);
+  assertIsClient(agreement);
+  const index : i32 = getMilestoneIndexByHash(agreement, hash);
+  agreement.milestones[index].started = true;
+  agreement.milestones[index].startedBlock = context.blockIndex;
+  agreements.set(id, agreement);
+}
+
+export function submitMilestone(id: string, hash: string): void {
+  const agreement = getAgreement(id);
+  assertIsSupplier(agreement);
+  const index : i32 = getMilestoneIndexByHash(agreement, hash);
+  agreement.milestones[index].submitted = true;
+  agreement.milestones[index].submittedBlock = context.blockIndex;
+  agreements.set(id, agreement);
+}
+
+export function payMilestone(id: string, hash: string): void {
+  const agreement = getAgreement(id);
+  assertIsClient(agreement);
+  const index : i32 = getMilestoneIndexByHash(agreement, hash);
+  agreement.milestones[index].paid = true;
+  agreement.milestones[index].paidBlock = context.blockIndex;
+  agreements.set(id, agreement);
 }
 
 export function signByOwner(id: string): void {
@@ -68,9 +104,26 @@ function assertOwnerPermissions(agreement: Agreement) : void {
   );
 }
 
-function assertNotSigned(agreement: Agreement) : void{
+function assertNotSigned(agreement: Agreement) : void {
   assert(
     !agreement.signedByOwner && !agreement.signedByPartner,
     "Error! Contract already signed!"
   );
 }
+
+function assertIsClient(agreement: Agreement) : void {
+  if (agreement.ownerIsSupplier) {
+    assert(agreement.partner == context.sender, "Allowed for Client only");
+  } else {
+    assert(agreement.ownerID == context.sender, "Allowed for Client only");
+  }
+}
+
+function assertIsSupplier(agreement: Agreement) : void {
+  if (agreement.ownerIsSupplier) {
+    assert(agreement.ownerID == context.sender, "Allowed for Supplier only");
+  } else {
+    assert(agreement.partner == context.sender, "Allowed for Suplier only");
+  }
+}
+

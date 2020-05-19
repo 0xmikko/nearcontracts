@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BasicRepositoryI } from "../core/basic";
 import { Template } from "./template";
+import {Account} from "./accounts";
 
 export type ContractStage =
   | "Draft"
@@ -27,11 +28,11 @@ export class Contract {
   @Column({ default: "" })
   content: string;
 
-  @Column({ default: "" })
-  ownerID: string;
+  @ManyToOne((type) => Account, (contract) => contract.ownerContracts)
+  owner: Account;
 
-  @Column({ default: "" })
-  partnerID: string;
+  @ManyToOne((type) => Account, (contract) => contract.partnerContracts)
+  partner: Account
 
   @ManyToOne((type) => Template, (template) => template.contracts)
   template: Template;

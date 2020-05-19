@@ -1,14 +1,18 @@
 import CryptoJS from "crypto-js";
+import {AgreementMilestone} from "./agreement";
 
 export class Milestone {
   private _name: string = "";
   private _description: string = ""; // Things to be done
   private _payment: number = 0;
   private _disputeShare: number = 0;
+  private _started : boolean = false;
+  private _startedBlock : number | undefined;
   private _submitted: boolean = false;
-  private _submittedDate: number | undefined;
+  private _submittedBlock: number | undefined;
   private _paid: boolean = false;
-  private _paidDate: number | undefined;
+  private _paidBlock: number | undefined;
+  private _isDeployed: boolean = false;
 
   constructor(text: string) {
     const lines: string[] = text.split("\n");
@@ -72,36 +76,43 @@ export class Milestone {
     ).toString();
   }
 
-  get submitted(): boolean {
+  public augmentMilestone(ams: AgreementMilestone) {
+    this._started = ams.started;
+    this._startedBlock = ams.startedBlock;
+    this._submitted = ams.submitted;
+    this._submittedBlock = ams.submittedBlock;
+    this._paid = ams.paid;
+    this._paidBlock = ams.paidBlock;
+    this._isDeployed = true;
+  }
+
+
+  get isStarted(): boolean {
+    return this._started;
+  }
+
+  get startedBlock(): number | undefined {
+    return this._startedBlock;
+  }
+
+  get isSubmitted(): boolean {
     return this._submitted;
   }
 
-  set submitted(value: boolean) {
-    this._submitted = value;
+  get submittedBlock(): number | undefined {
+    return this._submittedBlock;
   }
 
-  get submittedDate(): number | undefined {
-    return this._submittedDate;
-  }
-
-  set submittedDate(value: number | undefined) {
-    this._submittedDate = value;
-  }
-
-  get paid(): boolean {
+  get isPaid(): boolean {
     return this._paid;
   }
 
-  set paid(value: boolean) {
-    this._paid = value;
+  get paidBlock(): number | undefined {
+    return this._paidBlock;
   }
 
-  get paidDate(): number | undefined {
-    return this._paidDate;
-  }
-
-  set paidDate(value: number | undefined) {
-    this._paidDate = value;
+  get isDeployed(): boolean {
+    return this._isDeployed;
   }
 }
 

@@ -27,7 +27,7 @@ export const ContractsList: React.FC<DataScreenComponentProps<Contract[]>> = ({
       <td className="tx-medium text-left tx-normal">{h.name}</td>
       <td className="tx-medium text-left">{toHumanDate(h.date)}</td>
       <td className="tx-medium text-left">{h.partnerID}</td>
-      {/*<td className="tx-medium text-left">{h.status}</td>*/}
+      <td className="tx-medium text-left">{h.isDeployed ? "deployed" : "-"}</td>
     </tr>
   );
   // tx-teal tx-pink

@@ -49,6 +49,7 @@ export class ContractManager {
         this._contract.agreement === undefined
           ? "Error"
           : this._contract.agreement.status;
+      this.augumentMilestiones();
     } else {
       this._status = "Draft";
     }
@@ -99,5 +100,25 @@ export class ContractManager {
 
   toMarkdown(): string {
     return convertMarkdown(this._contract.content);
+  }
+
+  private augumentMilestiones() {
+    if (this._contract.agreement === undefined || this._contract.agreement.milestones === null ) return;
+    for (let ams of this._contract.agreement?.milestones) {
+      const ms = this.getMilestoneByHash(ams.hash);
+      if (ms !== undefined) {
+        ms.augmentMilestone(ams)
+
+      }
+    }
+
+  }
+
+  private getMilestoneByHash (hash: string) : Milestone | undefined {
+
+    for(let ms of this.milestones) {
+      if (ms.hash === hash) return ms;
+    }
+    return undefined
   }
 }

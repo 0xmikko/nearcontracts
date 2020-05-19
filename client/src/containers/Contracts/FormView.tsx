@@ -30,6 +30,9 @@ export const FormView: React.FC<FormViewProfileProps> = ({
     name: {
       label: "Contract name",
     },
+    partner: {
+      label: "Partner",
+    },
     content: {
       label: "Contract name",
       type: "markdown",
