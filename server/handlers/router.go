@@ -34,8 +34,7 @@ func registerRouter(services services.Services) *gin.Engine {
 		AllowOrigins:     []string{
 		 "http://localhost:3000",
 		 "http://localhost:8080",
-		 "https://tz-factor.com",
-		 "https://tz-factor-app.herokuapp.com",
+		 "https://crm-nanocontracts.herokuapp.com",
 		 },
 		AllowMethods:     []string{"POST", "GET", "PUT", "PATCH", "DELETE"},
 		AllowHeaders:     []string{"Content-Type", "Content-Length", "X-CSRF-Token", "Authorization", "accept", "origin", "Cache-Control", "X-Requested-With"},
