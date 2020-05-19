@@ -140,7 +140,6 @@ export function extractMilestones(contractText: string): Milestone[] {
         isMilestone = true;
       }
     }
-    console.log("MMS " + buffer);
   }
 
   if (buffer.length > 0 && isMilestone) result.push(new Milestone(buffer));
@@ -171,7 +170,6 @@ export function convertMarkdown(contractText: string): string {
         result += str + "\n";
       }
     }
-    console.log("MMS " + buffer);
   }
 
   if (buffer.length > 0) {
