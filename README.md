@@ -1,5 +1,15 @@
 # NearContracts
-Make Smartcontracts more popluar!
+Revolutionary tool which allows you to write smartcontracts as usual!
+
+This application was designed from scratch especially for NEAR Ready Layer One Hackathon!
+
+Official site: https://nearcontracts.herokuapp.com/
+
+Video presentation: 
+
+Frontend Github: https://github.com/MikaelLazarev/nearcontracts
+
+Backend Github: https://github.com/MikaelLazarev/nearcontracts-server
 
 ### Inspiration
 Near protocol looks much friendly than other blockchains, especially in onboarding process. My goal is to make it more popular and practical usage.
