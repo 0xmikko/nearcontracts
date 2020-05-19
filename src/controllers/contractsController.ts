@@ -45,7 +45,7 @@ export class ContractsController {
             console.log(result);
             res.status(200).json(result);
           })
-          .catch(() => res.status(400).send());
+          .catch((e) => {console.log(e);  res.status(400).send()})
       } catch (e) {
         console.log(e)
         res.status(400).send(e);

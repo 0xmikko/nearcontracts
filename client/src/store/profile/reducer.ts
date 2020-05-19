@@ -13,10 +13,8 @@ export interface ProfileState extends Profile {}
 
 const initialState: ProfileState = {
   status: APP_STATUS_SPLASH,
-  email: '',
   name: '',
-  job: '',
-  industry: '',
+  address: '',
 };
 
 export default function createReducer(

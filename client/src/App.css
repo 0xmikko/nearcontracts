@@ -45,3 +45,34 @@ blockquote {
   padding-left: 3em;
   border-left: 0.5em #888 solid;
 }
+
+.onescreen {
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  padding: 0!important;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.onescreen h1 {
+  font-size: 38px;
+  text-align: center;
+}
+
+.onescreen h2 {
+  font-size: 22px;
+  text-align: center;
+
+}
+
+.onescreen h3 {
+  font-size: 18px;
+  text-align: center;
+  color: #737373;
+}
+

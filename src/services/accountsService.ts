@@ -23,17 +23,16 @@ export class AccountsService implements AccountsServiceI {
 
   get(userId: string): Promise<Account> {
     return new Promise<Account>(async (resolve) => {
-      try {
-        const account = await this._repository.findOne(userId);
+      let account = await this._repository.findOne(userId);
+        if (account === undefined) {
+          account = new Account();
+          account.id = userId;
+          account.name = "";
+          account.status = "CONNECTING_ACCOUNT";
+          account.address = '';
+          await this._repository.insert(account);
+        }
         resolve(account);
-      } catch (e) {
-        const account = new Account();
-        account.id = userId;
-        account.name = "";
-        account.status = "CONNECTING_ACCOUNT";
-        await this._repository.insert(account);
-        resolve(account);
-      }
     });
   }
 
@@ -44,6 +43,10 @@ export class AccountsService implements AccountsServiceI {
     const account = await this.get(userId);
     account.name = dto.name;
     account.address = dto.address;
+
+    if (dto.name.length > 0 && dto.address.length >0) {
+      account.status = 'READY';
+    }
 
     return this._repository.upsert(account);
   }

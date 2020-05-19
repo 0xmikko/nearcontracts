@@ -28,7 +28,6 @@ export class AccountsController {
         this._service
           .get(req.user.user_id)
           .then((result) => {
-            console.log(result);
             res.status(200).json(result);
           })
           .catch(() => res.status(400).send());

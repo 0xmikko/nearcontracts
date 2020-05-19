@@ -14,7 +14,7 @@ import {ThunkAction} from 'redux-thunk';
 import {RootState} from '../index';
 import {Action} from 'redux';
 import {APP_STATUS_ERROR, Profile, ProfileStatus} from '../../core/profile';
-import {SSO_ADDR} from "../../config";
+import {BACKEND_ADDR, SSO_ADDR} from "../../config";
 
 // Get user profile from server
 export const getProfile = (): ThunkAction<void, RootState, unknown, Action<string>> => async dispatch => {
@@ -31,24 +31,6 @@ export const getProfile = (): ThunkAction<void, RootState, unknown, Action<strin
 
 };
 
-// Join update provider integrated flow
-export const joinProfileRequest = (
-  profile: Profile,
-  password: string,
-): ThunkAction<void, RootState, unknown, Action<string>> => async dispatch => {
-  const result = await dispatch(updatePassword(password));
-  if (!result.error && result.type === 'PROFILE_SUCCESS') {
-    await dispatch(updateProfile(profile));
-  }
-};
-
-export const updatePassword = (
-  password: string,
-): RSAAAction<any, Profile, void> => {
-  const endpoint = '/api/profile/password/';
-  const body = JSON.stringify({password});
-  return profileAction('POST', endpoint, body);
-};
 
 export const updateProfile = (
   profile: Profile,
@@ -69,7 +51,7 @@ const profileAction = (
 ): RSAAAction<any, Profile, void> => {
   return {
     [RSAA]: {
-      endpoint: getFullAPIAddress(endpoint, undefined, SSO_ADDR),
+      endpoint: getFullAPIAddress(endpoint, undefined, BACKEND_ADDR),
       method: method,
       body: body,
       headers: withAuth({'Content-Type': 'application/json'}),

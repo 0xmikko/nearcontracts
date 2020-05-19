@@ -4,8 +4,9 @@ import { getNearConfig } from "../../config";
 
 export const NEAR_PREFIX = "NEAR@@";
 export const NEAR_GET_ACCOUNT = NEAR_PREFIX + "GET_ACCOUNT";
+export const NEAR_UPDATE_STATUS = NEAR_PREFIX + "UPDATE_STATUS";
 
-export type NEAR_STATE = "AUTH_REQUIRED" | "LOGGED_IN" | "FAILED";
+export type NEAR_STATUS = "AUTH_REQUIRED" | "LOGGED_IN" | "LOADING";
 
 export class NearUtil {
   private static near: nearlib.Near | undefined = undefined;
@@ -53,6 +54,13 @@ export class NearUtil {
       }
 
       resolve(walletAccount.getAccountId());
+    });
+  }
+
+  public static isSignedIn(): Promise<boolean> {
+    return new Promise<boolean>(async (resolve) => {
+      const walletAccount = await NearUtil.getWalletAccount();
+      resolve(walletAccount.isSignedIn());
     });
   }
 

@@ -12,6 +12,7 @@ export interface Profile {
     id?: string,
     status: ProfileStatus,
     name: string,
+    address: string,
 
 }
 

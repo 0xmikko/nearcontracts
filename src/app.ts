@@ -86,11 +86,11 @@ export function createApp(config: ConfigParams): Promise<Application> {
     // Accounts Controller
     app.get("/api/accounts/", loginRequired, accountsController.list());
     app.get(
-      "/api/accounts/profile",
+      "/api/profile",
       loginRequired,
       accountsController.getProfile()
     );
-    app.post("/api/accounts/", loginRequired, accountsController.update());
+    app.post("/api/profile/", loginRequired, accountsController.update());
 
     // ERROR HANDLER
     app.use(errorHandler);

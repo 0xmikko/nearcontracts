@@ -1,14 +1,16 @@
 import { NearActions } from "./types";
-import { NEAR_GET_ACCOUNT } from "./index";
+import {NEAR_GET_ACCOUNT, NEAR_STATUS, NEAR_UPDATE_STATUS} from "./index";
 
 interface NearState {
   accountId: string | undefined;
   amount: number;
+  status: NEAR_STATUS;
 }
 
 const initialState: NearState = {
   accountId: undefined,
   amount: 0,
+  status: "LOADING",
 };
 
 export default (
@@ -25,5 +27,12 @@ export default (
         ...state,
         accountId: action.payload,
       };
+    case 'NEAR@@UPDATE_STATUS':
+      return {
+        ...state,
+        status: action.payload,
+      };
+
+
   }
 };

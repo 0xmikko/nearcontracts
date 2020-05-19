@@ -1,9 +1,11 @@
-import * as nearlib from "near-api-js";
+import {NEAR_GET_ACCOUNT, NEAR_STATUS, NEAR_UPDATE_STATUS, NearUtil} from "./index";
 
 export type NearActions = {
-    type: string;
-    payload?: string;
-    error?: boolean;
+    type: 'NEAR@@GET_ACCOUNT',
+    payload: string;
+} | {
+    type: 'NEAR@@UPDATE_STATUS',
+    payload: NEAR_STATUS;
 };
 
 
