@@ -5,7 +5,7 @@ This application was designed from scratch especially for NEAR Ready Layer One H
 
 Official site: https://nearcontracts.herokuapp.com/
 
-Video presentation: 
+Video presentation: https://youtu.be/5q4nKMpv848
 
 Frontend Github: https://github.com/MikaelLazarev/nearcontracts
 
@@ -42,7 +42,13 @@ Smartconttracts works well, however, both sides would have real contract which p
 
 <img width="1161" alt="6" src="https://user-images.githubusercontent.com/26343374/82379953-67df0c00-9a30-11ea-900e-cc6d0415975b.png">
 
-5. 
+5. Choose partner, change name and save your contract.
+
+6. Press Deploy button. When you contract is deployed you could no be able to change it in system. 
+
+YOU COULD ALSO PRINT & SIGN PAPER COPY OF YOU DEPLOYED SMART CONTRACT!
+
+7. For digital signing press sign button
 
 ### Disclaimer
 
