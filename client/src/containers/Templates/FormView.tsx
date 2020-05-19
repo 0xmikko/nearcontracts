@@ -30,6 +30,9 @@ export const FormView: React.FC<FormViewProfileProps> = ({
     name: {
       label: "Template name",
     },
+    description: {
+      label: "Description",
+    },
     content: {
       label: "Template name",
       type: "markdown",

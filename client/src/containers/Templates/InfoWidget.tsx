@@ -30,7 +30,7 @@ export const InfoWidget: React.FC<InfoWidgetProps> = ({ data }) => {
             <div className="table-responsive">
               Owner: Mikhail Lazarev
               <br />
-              Category: Freelance
+              Description: {data.description}
             </div>
           </Card.Body>
         </Card>

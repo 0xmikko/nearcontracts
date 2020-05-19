@@ -57,10 +57,18 @@ export const ContractsListScreen: React.FC = () => {
   const rightToolbar = (
       <ButtonGroup className="flex-fill m-0" >
         <Button variant={'outline-primary'} size={'sm'} active={hash === ''} onClick={() => onFilter("")}>All</Button>
+        <Button variant={'outline-primary'} size={'sm'} active={hash === '#mine'} onClick={() => onFilter("mine")}>Mine</Button>
         <Button variant={'outline-primary'} size={'sm'} active={hash === '#incoming'} onClick={() => onFilter("incoming")}>Incoming</Button>
-        <Button variant={'outline-primary'} size={'sm'} active={hash === '#outcoming'} onClick={() => onFilter("outcoming")}>Outcoming</Button>
       </ButtonGroup>
   );
+
+  let dataFiltered = data;
+  if (hash === '#mine') {
+      dataFiltered = data.filter(e => e.isIOwner)
+  }
+    if (hash === '#incoming') {
+        dataFiltered = data.filter(e => !e.isIOwner)
+    }
 
   return (
     <div className="content content-fixed">
@@ -70,7 +78,7 @@ export const ContractsListScreen: React.FC = () => {
         rightPanel={rightToolbar}
       />
       <DataScreen
-        data={data}
+        data={dataFiltered}
         status={status}
         component={ContractsList}
         onSelect={onSelect}

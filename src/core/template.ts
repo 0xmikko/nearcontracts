@@ -11,6 +11,9 @@ export class Template {
   name: string;
 
   @Column({ default: "" })
+  description: string;
+
+  @Column({ default: "" })
   content: string;
 
   @Column({ default: "" })
@@ -26,6 +29,7 @@ export class Template {
 export interface TemplateDTO {
   id: string;
   name: string;
+  description: string;
   content: string;
   isPublic: boolean;
 }
@@ -38,6 +42,9 @@ export const templateDTOSchema = {
       type: "string",
     },
     name: {
+      type: "string",
+    },
+    description: {
       type: "string",
     },
     content: {

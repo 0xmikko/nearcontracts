@@ -21,6 +21,7 @@ export class TemplatesService implements TemplatesServiceI {
     const newDoc = new Template();
     newDoc.content = dto.content;
     newDoc.name = dto.name;
+    newDoc.description = dto.description;
     newDoc.ownerID = userId;
     newDoc.isPublic = dto.isPublic;
     return this._repository.upsert(newDoc);
@@ -40,6 +41,7 @@ export class TemplatesService implements TemplatesServiceI {
       throw 'Template not found'
     }
     template.name = dto.name;
+    template.description = dto.description;
     template.content = dto.content;
     template.isPublic = dto.isPublic
 

@@ -25,7 +25,6 @@ export const TemplatesList: React.FC<DataScreenComponentProps<Template[]>> = ({
     <tr onClick={() => onPressed(h.id)} key={h.id}>
       <td className="tx-color-03 text-left tx-normal">{h.name}</td>
       <td className="tx-medium text-left">{h.description}</td>
-      <td className="tx-medium text-left">{h.isPublic}</td>
     </tr>
   );
   // tx-teal tx-pink
@@ -43,8 +42,6 @@ export const TemplatesList: React.FC<DataScreenComponentProps<Template[]>> = ({
                   <th style={{ width: "25%" }}>Name</th>
 
                   <th>Description</th>
-                  <th>Signed</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>{renderTableContent}</tbody>

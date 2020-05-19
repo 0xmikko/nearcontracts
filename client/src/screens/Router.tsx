@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PrivateRoute } from "../components/PrivateRoute";
 import { withTracker } from "../components/withTrackerHOC";
 import { Redirect, Route, Switch } from "react-router";
@@ -9,9 +9,15 @@ import { TemplateDetailsScreen } from "./Templates/TemplateDetailsScreen";
 import { ContractsListScreen } from "./Contracts/ContractsListScreen";
 import { ContractEditScreen } from "./Contracts/ContractEditScreen";
 import { ContractDetailsScreen } from "./Contracts/ContractDetailsScreen";
-import {ContractNewScreen} from "./Contracts/ContractNewScreen";
+import { ContractNewScreen } from "./Contracts/ContractNewScreen";
+import actions from "../store/actions";
+import { useDispatch } from "react-redux";
 
 export const Router: React.FC = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actions.near.getAccount());
+  }, []);
   return (
     <>
       <AppBar />
@@ -37,14 +43,14 @@ export const Router: React.FC = () => {
           component={withTracker(ContractsListScreen)}
         />
         <PrivateRoute
-            exact
-            path="/contracts/new_from_template/:template_id"
-            component={withTracker(ContractNewScreen)}
+          exact
+          path="/contracts/new_from_template/:template_id"
+          component={withTracker(ContractNewScreen)}
         />
         <PrivateRoute
-            exact
-            path="/contracts/:id"
-            component={withTracker(ContractDetailsScreen)}
+          exact
+          path="/contracts/:id"
+          component={withTracker(ContractDetailsScreen)}
         />
         <PrivateRoute
           exact

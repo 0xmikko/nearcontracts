@@ -25,6 +25,7 @@ export class TemplatesController {
       const dto : TemplateDTO = {
         id: req.body.id,
         name: req.body.name,
+        description: req.body.description,
         content: req.body.content,
         isPublic: req.body.isPublic,
       }
@@ -92,6 +93,7 @@ export class TemplatesController {
       const dto : TemplateDTO = {
         id: req.body.id,
         name: req.body.name,
+        description: req.body.description,
         content: req.body.content,
         isPublic: req.body.isPublic,
       }
