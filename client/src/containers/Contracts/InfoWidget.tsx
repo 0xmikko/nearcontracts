@@ -89,9 +89,9 @@ export const InfoWidget: React.FC<InfoWidgetProps> = ({ data }) => {
   let nextAction;
 
   if (contractManager.status === 'Draft') {
-    nextAction =  <Button onClick={onDeploy} disabled={isSubmitted}>
+    nextAction = data.isIOwner ? <Button onClick={onDeploy} disabled={isSubmitted}>
       Deploy
-    </Button>
+    </Button> : <strong>Waiting for deployment by owner</strong>
   }
 
   if (contractManager.status === 'Deployed' && contractManager.couldBeSignedByMe(accountID)) {
@@ -114,15 +114,19 @@ export const InfoWidget: React.FC<InfoWidgetProps> = ({ data }) => {
             <div className="table-responsive">
               Date: {toHumanDate(data.date)}
               <br />
-              Partner: {data.partnerID}
+              Owner: {data.owner?.name}
               <br />
-              Agreement ID: {data.address}
+              Partner: {data.partner?.name}
+              <br />
+              Agreement ID: {data.isDeployed ? data.address : "Not deployed yet."}
               <br />
               Status: {contractManager.status}
               <br />
-              Signed by owner: { contractManager.signedByOwner }
+              Signed by owner: { contractManager.signedByOwner || '' }
               <br />
-              Signed by partner: { contractManager.signedByPartner }
+              Signed by partner: { contractManager.signedByPartner || ''}
+              <br />
+              <br />
             </div>
 
             {nextAction}

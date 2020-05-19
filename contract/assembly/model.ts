@@ -30,9 +30,9 @@ export class Agreement {
 
   milestones: Array<Milestone>;
 
-  constructor(ownerID: string, partner: string, ownerIsSupplier: bool) {
+  constructor(ownerID: string, partnerID: string, ownerIsSupplier: bool) {
     this.ownerID = ownerID;
-    this.partner = partner;
+    this.partner = partnerID;
     this.ownerIsSupplier = ownerIsSupplier;
     this.status = "Deployed";
     this.signedByOwner = false;

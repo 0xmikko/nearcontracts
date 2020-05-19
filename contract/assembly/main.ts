@@ -90,9 +90,9 @@ export function signByOwner(id: string): void {
   agreements.set(id, agreement);
 }
 
-export function signAsPartner(id: string): void {
+export function signByPartner(id: string): void {
   const agreement = getAgreement(id);
-  assertOwnerPermissions(agreement);
+  assertPartnerPermissions(agreement);
   agreement.signedByPartner = true;
   agreements.set(id, agreement);
 }
@@ -101,6 +101,14 @@ function assertOwnerPermissions(agreement: Agreement) : void {
   assert(
     agreement.ownerID == context.sender,
     "Only agreement owner has permission"
+  );
+}
+
+
+function assertPartnerPermissions(agreement: Agreement) : void {
+  assert(
+      agreement.partner == context.sender,
+      "Only agreement partner has permission"
   );
 }
 

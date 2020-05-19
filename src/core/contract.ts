@@ -42,6 +42,8 @@ export class Contract {
 
   @Column({default: true})
   ownerIsSupplier: boolean;
+
+  isIOwner: boolean = false;
 }
 
 export interface ContractCreateDTO {
@@ -97,7 +99,9 @@ export const contractUpdateDTOSchema = {
   },
 };
 
-export interface ContractsRepositoryI extends BasicRepositoryI<Contract> {}
+export interface ContractsRepositoryI extends BasicRepositoryI<Contract> {
+  listByUser(owner: Account): Promise<Contract[] | undefined>;
+}
 
 export interface ContractsServiceI {
   create(userID: string, dto: ContractCreateDTO): Promise<Contract>;

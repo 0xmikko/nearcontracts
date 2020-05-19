@@ -37,7 +37,7 @@ export const DetailsView: React.FC<ContractDetailsProps> = ({
         <InfoWidget data={data} />
       </TabPane>
       <TabPane hash={'#milestones'}>
-          <MilestonesWidget data={contractManager.milestones} />
+          <MilestonesWidget data={contractManager.milestones} cm={contractManager}/>
       </TabPane>
     </Container>
   );

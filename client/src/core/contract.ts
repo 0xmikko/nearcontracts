@@ -1,7 +1,7 @@
 import { Template } from "../../../src/core/template";
 import { convertMarkdown, extractMilestones, Milestone } from "./milestone";
 import { Agreement } from "./agreement";
-
+import { Account } from "./account";
 
 export type ContractStage =
   | "Draft"
@@ -20,10 +20,13 @@ export interface Contract {
   content: string;
   ownerIsSupplier: boolean;
   ownerID?: string;
+  owner?: Account;
   partnerID?: string;
+  partner?: Account;
   template?: Template;
   template_id?: string;
   agreement?: Agreement;
+  isIOwner: boolean;
 }
 
 export const DefaultNewContract: Contract = {
@@ -33,6 +36,7 @@ export const DefaultNewContract: Contract = {
   content: "",
   ownerIsSupplier: true,
   isDeployed: false,
+  isIOwner: true,
 };
 
 export class ContractManager {
@@ -63,22 +67,44 @@ export class ContractManager {
     return this._status;
   }
 
-  get signedByOwner() : string {
-    return this._contract.agreement === undefined ? "undefined" : this._contract.agreement.signedByOwner ? 'yes' : 'no';
+  get contract(): Contract{
+    return this._contract;
   }
 
-  get signedByPartner() : string {
-    return this._contract.agreement === undefined ? "undefined" : this._contract.agreement.signedByPartner ? 'yes' : 'no';
+  get signedByOwner(): string {
+    return this._contract.agreement === undefined
+      ? "not deployed yet"
+      : this._contract.agreement.signedByOwner
+      ? "yes"
+      : "no";
+  }
+
+  get signedByPartner(): string {
+    return this._contract.agreement === undefined
+      ? "not deployed yet"
+      : this._contract.agreement.signedByPartner
+      ? "yes"
+      : "no";
   }
 
   public isOwner(accountID: string): boolean {
     if (this._contract.agreement === undefined) return false;
-    return this._contract.agreement.ownerID === accountID
+    return this._contract.agreement.ownerID === accountID;
   }
 
   public isPartner(accountID: string): boolean {
     if (this._contract.agreement === undefined) return false;
-    return this._contract.agreement.partner === accountID
+    return this._contract.agreement.partner === accountID;
+  }
+
+  public isClient(accountID: string): boolean {
+    if (this._contract.agreement === undefined)
+      throw "Cant get infor without agreement";
+    if (this._contract.ownerIsSupplier) {
+      return this._contract.agreement.partner === accountID;
+    } else {
+      return this._contract.agreement.ownerID === accountID;
+    }
   }
 
   public couldBeSignedByMe(accountID: string): boolean {
@@ -103,22 +129,23 @@ export class ContractManager {
   }
 
   private augumentMilestiones() {
-    if (this._contract.agreement === undefined || this._contract.agreement.milestones === null ) return;
+    if (
+      this._contract.agreement === undefined ||
+      this._contract.agreement.milestones === null
+    )
+      return;
     for (let ams of this._contract.agreement?.milestones) {
       const ms = this.getMilestoneByHash(ams.hash);
       if (ms !== undefined) {
-        ms.augmentMilestone(ams)
-
+        ms.augmentMilestone(ams);
       }
     }
-
   }
 
-  private getMilestoneByHash (hash: string) : Milestone | undefined {
-
-    for(let ms of this.milestones) {
+  private getMilestoneByHash(hash: string): Milestone | undefined {
+    for (let ms of this.milestones) {
       if (ms.hash === hash) return ms;
     }
-    return undefined
+    return undefined;
   }
 }

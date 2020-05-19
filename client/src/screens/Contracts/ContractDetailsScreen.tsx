@@ -62,7 +62,7 @@ export const ContractDetailsScreen: React.FC<ContractDetailsScreenProps> = ({
 
   const contractManager = new ContractManager(data);
 
-  const rightToolbar = contractManager.status === 'Draft' ? (
+  const rightToolbar = !data.isDeployed ? (
     <div className="d-none d-md-block">
       <Button
         className="btn-sm pd-x-15 btn-brand-01 btn-uppercase"
@@ -70,12 +70,6 @@ export const ContractDetailsScreen: React.FC<ContractDetailsScreenProps> = ({
         style={{marginRight: '10px'}}
       >
         Edit
-      </Button>
-      <Button
-          className="btn-sm pd-x-15 btn-brand-01 btn-uppercase"
-          onClick={() => history.push(`/contracts/${id}/sign/`)}
-      >
-        Deploy & Sign
       </Button>
     </div>
   ) : <div /> ;

@@ -7,6 +7,7 @@
  */
 
 import * as auth from "./auth/actions";
+import * as accounts from "./accounts/actions";
 import * as contracts from "./contracts/actions";
 import * as near from "./near/actions";
 import * as profile from "./profile/actions";
@@ -15,6 +16,7 @@ import * as operations from "./operations/actions";
 
 export default {
   auth,
+  accounts,
   contracts,
   near,
   profile,
