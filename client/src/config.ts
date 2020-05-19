@@ -10,8 +10,8 @@ const CONTRACT_NAME = "nrc_test";
 
 export const BACKEND_ADDR =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:4000"
-    : "http://localhost:4000";
+    ? "https://nearcontracts-server.herokuapp.com"
+    : "https://nearcontracts-server.herokuapp.com";
 
 export const SSO_ADDR =
   process.env.NODE_ENV === "development"

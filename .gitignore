@@ -24,3 +24,4 @@ yarn-error.log*
 
 /ormconfig.json
 /src/config/*.json
+/server/config/*.json
