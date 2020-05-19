@@ -24,6 +24,17 @@ NearContacts allows you to write your contract using markdown language and creat
 
 Smartconttracts works well, however, both sides would have real contract which provided additional law protection!
 
+### How it works
+
+1. Login to https://nearcontracts.herokuapp.com and login with Google Account.
+2. Choose template from Template collection and than press "Create contract".
+
+<img width="1440" alt="1" src="https://user-images.githubusercontent.com/26343374/82379935-6281c180-9a30-11ea-8335-1e384dd2aaee.png">
+
+3. New contract appears in My Contracts, choose it and then press Edit
+
+
+
 ### Disclaimer
 
 This application is provided "as is" and "with all faults." Me as developer makes no representations or warranties of any kind concerning the safety, suitability, lack of viruses, inaccuracies, typographical errors, or other harmful components of this software. There are inherent dangers in the use of any software, and you are solely responsible for determining whether this software product is compatible with your equipment and other software installed on your equipment. You are also solely responsible for the protection of your equipment and backup of your data, and THE PROVIDER will not be liable for any damages you may suffer in connection with using, modifying, or distributing this software product.
