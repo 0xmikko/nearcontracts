@@ -33,7 +33,16 @@ Smartconttracts works well, however, both sides would have real contract which p
 
 3. New contract appears in My Contracts, choose it and then press Edit
 
+<img width="1440" alt="5" src="https://user-images.githubusercontent.com/26343374/82379952-67467580-9a30-11ea-9fb7-87657f065922.png">
 
+4. Add payments milestones simplify start your line with $ sign. For now you could specify:
+* Name: milestone name
+* Description: things to be done during milestone
+* Amount: how much Client should pay to supplier
+
+<img width="1161" alt="6" src="https://user-images.githubusercontent.com/26343374/82379953-67df0c00-9a30-11ea-900e-cc6d0415975b.png">
+
+5. 
 
 ### Disclaimer
 
