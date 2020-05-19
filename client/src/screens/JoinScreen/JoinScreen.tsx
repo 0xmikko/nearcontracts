@@ -62,7 +62,7 @@ export const JoinScreen: React.FC = () => {
       nearAddress = <Loading />;
       break;
     case "AUTH_REQUIRED":
-      nearAddress = <Button>Login to Near</Button>;
+      nearAddress = <Button onClick={() => dispatch(actions.near.getAccount())}>Login to Near</Button>;
       break;
     case "LOGGED_IN":
       nearAddress = (

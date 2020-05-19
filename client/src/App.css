@@ -1,49 +1,64 @@
-.App {
-  text-align: center;
+/*
+ * Lean tool - hypothesis testing application
+ *
+ * https://github.com/MikaelLazarev/lean-tool/
+ * Copyright (c) 2020. Mikhail Lazarev
+ *
+ */
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-blockquote {
-  color: #666;
-  background-color: #F0F0F0;
+body {
   margin: 0;
-  padding-left: 3em;
-  border-left: 0.5em #888 solid;
+  font-family: 'Roboto' !important;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #001737;
+  text-align: left;
+  background-color: #fff;
+}
+
+[tabindex='-1']:focus {
+  outline: 0 !important;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .onescreen {
@@ -76,3 +91,60 @@ blockquote {
   color: #737373;
 }
 
+
+/*
+ * Lean tool - hypothesis testing application
+ *
+ * https://github.com/MikaelLazarev/lean-tool/
+ * Copyright (c) 2020. Mikhail Lazarev
+ *
+ */
+
+.btn {
+  font-size: 11px;
+  line-height: 1.773;
+  /*background-color: #0153c7;*/
+  /*border-color: #0153c7;*/
+  /*color: #fff;*/
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: .5px;
+
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.form-control,
+input,
+textarea {
+  font-size: 14px;
+  height: 48px;
+  margin-bottom: 24px;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 0;
+}
+
+input:disabled,
+textarea:disabled{
+  background-color: rgba(205, 205, 205, 0.42);
+  color: #001471;
+
+}
+
+
+
+label{
+  font-size: 14px;
+}
+
+.feedback{
+  color: red;
+  margin-top: -18px;
+  font-size: 12px;
+  text-align: center;
+}

@@ -76,7 +76,7 @@ export const createDataLoaderDetailActions = (
       })
     );
 
-    if (action.error) {
+    if (action === undefined || action.error) {
       dispatch(
         updateStatus(hash || "0", STATUS.FAILURE, action.payload.message)
       );
