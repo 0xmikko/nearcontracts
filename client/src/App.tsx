@@ -22,9 +22,8 @@ import { withTracker } from "./components/withTrackerHOC";
 
 import {
   APP_STATUS_AUTH_REQUIRED,
-  APP_STATUS_CHOOSING_PLAN,
   APP_STATUS_ERROR,
-  APP_STATUS_FILLING_PROFILE,
+  APP_STATUS_CONNECTION_ACCOUNT,
   APP_STATUS_READY,
 } from "./core/profile";
 
@@ -68,9 +67,9 @@ const App = () => {
         </Switch>
       );
 
-    case APP_STATUS_FILLING_PROFILE:
+    case APP_STATUS_CONNECTION_ACCOUNT:
       return <JoinScreen />;
-    case APP_STATUS_CHOOSING_PLAN:
+
     case APP_STATUS_READY:
       return <Router />;
 

@@ -10,4 +10,9 @@ export const TYPES = {
     ContractsController: Symbol.for("ContractsController"),
     ContractsRepository: Symbol.for("ContractsRepository"),
     ContractsService: Symbol.for("ContractsService"),
+
+    // ACCOUNTS
+    AccountsController: Symbol.for("AccountsController"),
+    AccountsRepository: Symbol.for("AccountsRepository"),
+    AccountsService: Symbol.for("AccountsService"),
 }

@@ -10,6 +10,7 @@ import { TemplatesController } from "./controllers/templatesController";
 import errorHandler from "./middleware/errorHandler";
 import { loginRequireMiddleware } from "./middleware/loginRequired";
 import { ContractsController } from "./controllers/contractsController";
+import { AccountsController } from "./controllers/accountsController";
 
 export function createApp(config: ConfigParams): Promise<Application> {
   return new Promise<Application>(async (resolve) => {
@@ -53,6 +54,10 @@ export function createApp(config: ConfigParams): Promise<Application> {
       TYPES.TemplatesController
     );
 
+    const accountsController = container.get<AccountsController>(
+      TYPES.AccountsController
+    );
+
     app.get("/", (req, res) => {
       console.log(req);
       res.status(200).send("It works!");
@@ -77,6 +82,15 @@ export function createApp(config: ConfigParams): Promise<Application> {
     );
     app.post("/api/templates/", loginRequired, templatesController.create());
     app.put("/api/templates/:id", loginRequired, templatesController.update());
+
+    // Accounts Controller
+    app.get("/api/accounts/", loginRequired, accountsController.list());
+    app.get(
+      "/api/accounts/profile",
+      loginRequired,
+      accountsController.getProfile()
+    );
+    app.post("/api/accounts/", loginRequired, accountsController.update());
 
     // ERROR HANDLER
     app.use(errorHandler);
