@@ -75,7 +75,7 @@ export class NearUtil {
         getNearConfig(process.env.NODE_ENV || "development").contractName,
         {
           // View methods are read only. They don't modify the state, but usually return some value.
-          viewMethods: ["getAgreement"],
+          viewMethods: ["getAgreement", "getBalance"],
           // Change methods can modify the state. But you don't receive the returned value when called.
           changeMethods: [
             "createNewAgreement",

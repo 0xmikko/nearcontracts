@@ -1,13 +1,13 @@
 import CryptoJS from "crypto-js";
-import {AgreementMilestone} from "./agreement";
+import { AgreementMilestone } from "./agreement";
 
 export class Milestone {
   private _name: string = "";
   private _description: string = ""; // Things to be done
   private _payment: number = 0;
   private _disputeShare: number = 0;
-  private _started : boolean = false;
-  private _startedBlock : number | undefined;
+  private _started: boolean = false;
+  private _startedBlock: number | undefined;
   private _submitted: boolean = false;
   private _submittedBlock: number | undefined;
   private _paid: boolean = false;
@@ -28,7 +28,6 @@ export class Milestone {
 > Description:  
 > ${this.description}  
 > Hash: ${this.hash}  `;
-
   }
 
   private parseLine(str: string) {
@@ -86,29 +85,34 @@ export class Milestone {
     this._isDeployed = true;
   }
 
-
   get isStarted(): boolean {
     return this._started;
   }
 
-  get startedBlock(): number | undefined {
-    return this._startedBlock;
+  get startedBlock(): string {
+    return this._startedBlock === undefined || this._startedBlock == 0
+      ? "-"
+      : this._startedBlock.toString();
   }
 
   get isSubmitted(): boolean {
     return this._submitted;
   }
 
-  get submittedBlock(): number | undefined {
-    return this._submittedBlock;
+  get submittedBlock(): string {
+    return this._submittedBlock === undefined || this._submittedBlock == 0
+      ? "-"
+      : this._submittedBlock.toString();
   }
 
   get isPaid(): boolean {
     return this._paid;
   }
 
-  get paidBlock(): number | undefined {
-    return this._paidBlock;
+  get paidBlock(): string {
+    return this._paidBlock === undefined || this._paidBlock == 0
+      ? "-"
+      : this._paidBlock.toString();
   }
 
   get isDeployed(): boolean {
@@ -128,7 +132,7 @@ export function extractMilestones(contractText: string): Milestone[] {
       } else {
         result.push(new Milestone(buffer));
         isMilestone = false;
-        buffer = '';
+        buffer = "";
       }
     } else {
       if (str.startsWith("$")) {
@@ -157,7 +161,7 @@ export function convertMarkdown(contractText: string): string {
         const newMS = new Milestone(buffer);
         result += newMS.toMarkdown() + "\n  \n";
         isMilestone = false;
-        buffer = '';
+        buffer = "";
       }
     } else {
       if (str.startsWith("$")) {

@@ -26,7 +26,7 @@ export const DetailsView: React.FC<ContractDetailsProps> = ({
   data,
 }: ContractDetailsProps) => {
   const history = useHistory();
-  const tabs: string[] = ['Info', 'Milestones', 'Reviews'];
+  const tabs: string[] = ['Info', 'Milestones'];
 
   const contractManager = new ContractManager(data);
 

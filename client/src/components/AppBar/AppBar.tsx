@@ -20,6 +20,7 @@ import logo from '../../logo.png';
 
 export const AppBar = () => {
   const isSignIn = useSelector((state: RootState) => isAuthenticated(state));
+  const amount = useSelector((state: RootState) => state.near.amount);
 
   const dispatch = useDispatch();
 
@@ -36,22 +37,9 @@ export const AppBar = () => {
   const authRightMenu = (
     <div className="navbar-right">
       <NavDropdown title="Account" id="basic-nav-dropdown" alignRight>
-        <NavDropdown.Item key={'myaccounts'}>
-          <Link to={'/wallet#accounts'} className="nav-link p-0">
-            My accounts
-          </Link>
+        <NavDropdown.Item key={'amount'}>
+            Amount: {amount}
         </NavDropdown.Item>
-        <NavDropdown.Item key={'mybonds'}>
-          <Link to={'/wallet#bonds'} className="nav-link p-0">
-            My bonds
-          </Link>
-        </NavDropdown.Item>
-          <NavDropdown.Item key={'profile'}>
-              <Link to={'/profile'} className="nav-link p-0">
-                  Edit profile
-              </Link>
-          </NavDropdown.Item>
-        <NavDropdown.Divider />
         <NavDropdown.Item onClick={onLogout} key={'logout'}>
           <i data-feather="log-out" />
           Logout

@@ -22,10 +22,10 @@ export default (
   switch (action.type) {
     default:
       return state;
-    case NEAR_GET_ACCOUNT:
+    case 'NEAR@@GET_ACCOUNT':
       return {
         ...state,
-        accountId: action.payload,
+        ...action.payload,
       };
     case 'NEAR@@UPDATE_STATUS':
       return {
