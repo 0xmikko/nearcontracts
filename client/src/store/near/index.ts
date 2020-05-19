@@ -49,7 +49,7 @@ export class NearUtil {
           "nrc_test",
           "Near Contracts!",
           window.location.toString(),
-          "localhost:3000/"
+            window.location.toString()
         );
       }
 
