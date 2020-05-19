@@ -5,7 +5,7 @@ This application was designed from scratch especially for NEAR Ready Layer One H
 
 Official site: https://nearcontracts.herokuapp.com/
 
-Video presentation: https://youtu.be/5q4nKMpv848
+Video presentation: https://youtu.be/kR-ms5b1VxA
 
 Frontend Github: https://github.com/MikaelLazarev/nearcontracts
 
