@@ -16,5 +16,5 @@ func GetProjectRootDir() string {
 		return "/app/"
 	}
 
-	return "/Users/mikhail/Coding/tz-factor-client/"
+	return "/Users/mikhail/Coding/nearcontracts/"
 }
