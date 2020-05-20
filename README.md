@@ -1,5 +1,6 @@
 ![11111](https://user-images.githubusercontent.com/26343374/82413547-3856f080-9a7e-11ea-8d1e-5c93e17e305c.png)
 
+# NearContracts
 ## Revolutionary tool which allows you to write smartcontracts as usual!
 
 This application was designed from scratch especially for NEAR Ready Layer One Hackathon!
@@ -13,22 +14,22 @@ Frontend Github: https://github.com/MikaelLazarev/nearcontracts
 Backend Github: https://github.com/MikaelLazarev/nearcontracts-server
 
 ### Inspiration
-Near protocol looks much friendly than other blockchains, especially in onboarding process. My goal is to make it more popular and practical usage. Simpilifed login & signup flow makes Near protocol very promising for real adoption.
+Near protocol makes a huge step to simplify interation with blokchain for majorty of people. Simple signup & login flow (without intsalling metamask or writing BIP39 codes on paper) makes Near protocol very promising for real adoption. It's inspired me to use the same approach for writing smartcontracts.
 
 ### Problem
+Usual contracts are very popular and written in human language but have no automation. Smartcontracts are executed automatically but could not be read only for tech-savvy people. Current economic turmoil could bring default crisis, when partner would no be willing to pay obligations.
 
-Majority of people are know nothing about smart contracts. Only tech-savvy people could understand them pretty well. However, with current ecomonic turmoil and lack of trust, we need someting better that regular contracts especially to work with foreign partnets.
+This situation makes a deep negative impact for contracts with small sums cause legal services and a lot of issues  could understand them pretty well. However, with current ecomonic turmoil and lack of trust, we need someting better that regular contracts especially to work with foreign partnets.
+
+This behavior puts particular pressure on the contracts for small amounts, for the sake of which they are usually not sued, since legal costs are high and also require a lot of time and effort.
 
 ### Solution
 
-NearContacts allows you to write your contract using markdown language and create and use special symbols to add smartcontracts functionality. So, you could simply copy your existing contract and convert it into smart contract with a few clicks!
-
-Smartconttracts works well, however, both sides would have real contract which provided additional law protection!
+NearContacts allows you to write your contracts with human language as usual. Special syntax add an opportunty to add special blocks which are still human readable but add extract smart contract features. It automates all processes, described in smartcontracts and help to track all payment and submission events.
 
 ### How it works
 
-1. Login to https://nearcontracts.herokuapp.com and login with Google Account.
-2. Choose template from Template collection and than press "Create contract".
+1.You choose an usual conract template from Template collection and than press "Create contract".
 
 <img width="1440" alt="1" src="https://user-images.githubusercontent.com/26343374/82379935-6281c180-9a30-11ea-8335-1e384dd2aaee.png">
 
@@ -36,7 +37,8 @@ Smartconttracts works well, however, both sides would have real contract which p
 
 <img width="1440" alt="5" src="https://user-images.githubusercontent.com/26343374/82379952-67467580-9a30-11ea-9fb7-87657f065922.png">
 
-4. Add payments milestones simplify start your line with $ sign. For now you could specify:
+4. When you want to add a payment milestone, you should use dollar sign as syntax and soecify terms:
+
 * Name: milestone name
 * Description: things to be done during milestone
 * Amount: how much Client should pay to supplier
