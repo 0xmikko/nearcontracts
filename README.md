@@ -1,6 +1,8 @@
 # NearContracts
 ## Revolutionary tool which allows you to write smartcontracts as usual!
 
+![11111](https://user-images.githubusercontent.com/26343374/82413547-3856f080-9a7e-11ea-8d1e-5c93e17e305c.png)
+
 This application was designed from scratch especially for NEAR Ready Layer One Hackathon!
 
 Official site: https://nearcontracts.herokuapp.com/
