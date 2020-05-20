@@ -37,21 +37,21 @@ NearContacts allows you to write your contracts with human language as usual. Sp
 
 <img width="1440" alt="5" src="https://user-images.githubusercontent.com/26343374/82379952-67467580-9a30-11ea-9fb7-87657f065922.png">
 
-4. When you want to add a payment milestone, you should use dollar sign as syntax and soecify terms:
+4. When you want to add a payment milestone, you should use dollar sign as syntax and soecify terms. Interative editor immidiately renders your extra markdown language:
 
 * Name: milestone name
 * Description: things to be done during milestone
 * Amount: how much Client should pay to supplier
 
-<img width="1161" alt="6" src="https://user-images.githubusercontent.com/26343374/82379953-67df0c00-9a30-11ea-900e-cc6d0415975b.png">
+<img width="1161" alt="6" src="https://user-images.githubusercontent.com/26343374/82418739-08abe680-9a86-11ea-8ff8-50a2656e1675.png">
 
-5. Choose partner, change name and save your contract.
+5. To finalize the contract, choose partner from list and save changes. (When you choose a partner, s/he gets an access to contract and could edit it also!)
 
-6. Press Deploy button. When you contract is deployed you could no be able to change it in system. 
+6. When contract is ready you could deploy it to Near Protocol blockchain pressing Deploy button. When you contract is deployed you could no be able to change it in system. 
 
-YOU COULD ALSO PRINT & SIGN PAPER COPY OF YOU DEPLOYED SMART CONTRACT!
+** YOU COULD ALSO PRINT & SIGN PAPER COPY OF YOU DEPLOYED SMART CONTRACT! **
 
-7. For digital signing press sign button
+7. Both sides should sign contract by pressing Sign button which automatically appears after deployment
 
 ### Disclaimer
 
