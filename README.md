@@ -1,5 +1,5 @@
 # NearContracts
-Revolutionary tool which allows you to write smartcontracts as usual!
+## Revolutionary tool which allows you to write smartcontracts as usual!
 
 This application was designed from scratch especially for NEAR Ready Layer One Hackathon!
 
