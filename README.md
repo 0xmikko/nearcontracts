@@ -47,11 +47,25 @@ NearContacts allows you to write your contracts with human language as usual. Sp
 
 5. To finalize the contract, choose partner from list and save changes. (When you choose a partner, s/he gets an access to contract and could edit it also!)
 
+<img width="1225" alt="7" src="https://user-images.githubusercontent.com/26343374/82424080-59730d80-9a8d-11ea-93ed-da79761c018e.png">
+
 6. When contract is ready you could deploy it to Near Protocol blockchain pressing Deploy button. When you contract is deployed you could no be able to change it in system. 
+
+<img width="1189" alt="8" src="https://user-images.githubusercontent.com/26343374/82427181-6a258280-9a91-11ea-952a-a229828ef688.png">
 
 ** YOU COULD ALSO PRINT & SIGN PAPER COPY OF YOU DEPLOYED SMART CONTRACT! **
 
-7. Both sides should sign contract by pressing Sign button which automatically appears after deployment
+7. Both sides should digitally sign contract by pressing Sign button which automatically appears after deployment
+
+8. After signng the contract, you could control execution via Milestone tab:
+
+<img width="1171" alt="9" src="https://user-images.githubusercontent.com/26343374/82427593-f9cb3100-9a91-11ea-92e9-69bada4aab67.png">
+
+9. A user with Client Role could "Start milestone" and pay for submitted one. A user with role Supplier could Submit job when its done. When Client press "Pay button", money would be trasferred from his account to Suppliers account automatically.
+
+10. For curent version each user gets 1000 USD on account. You can always check your balance pressing on Account button in top rigth corner:
+
+<img width="272" alt="10" src="https://user-images.githubusercontent.com/26343374/82427862-54648d00-9a92-11ea-8119-1ca41f96e440.png">
 
 ### Disclaimer
 
