@@ -34,7 +34,7 @@
     "global": "^4.4.0",
     "history": "^4.10.1",
     "jwt-decode": "^2.2.0",
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^12.3.2",
     "moment": "^2.24.0",
     "near-api-js": "^0.25.1",
     "query-string": "latest",
