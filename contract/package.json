@@ -62,7 +62,7 @@
     "history": "^4.10.1",
     "jwt-decode": "^2.2.0",
     "markdown-it": "^10.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "near-api-js": "^0.25.1",
     "query-string": "latest",
     "react": "^16.13.1",
